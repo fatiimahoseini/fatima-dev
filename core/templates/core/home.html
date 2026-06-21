@@ -1,0 +1,824 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- HERO WRAPPER -->
+<section>
+
+    <!-- Background -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+
+        <!-- GLOW 1 -->
+        <div class="absolute w-[650px] h-[500px]
+                    left-[-200px] top-[60px]
+                    bg-sky-500/10 blur-[170px]
+                    animate-[floatGlow_12s_ease-in-out_infinite]">
+        </div>
+    
+        <!-- GLOW 2 -->
+        <div class="absolute w-[600px] h-[650px]
+                    right-[-250px] top-[-120px]
+                    bg-blue-600/10 blur-[190px]
+                    animate-[floatGlow_16s_ease-in-out_infinite]">
+        </div>
+    
+        <!-- GLOW 3 -->
+        <div class="absolute w-[450px] h-[450px]
+                    left-[35%] bottom-[-200px]
+                    bg-indigo-500/10 blur-[160px]
+                    animate-[floatGlow_14s_ease-in-out_infinite]">
+        </div>
+    
+        <!-- FADE TO NEXT SECTION (VERY IMPORTANT) -->
+        <div class="absolute bottom-0 left-0 w-full h-40
+                    bg-gradient-to-b from-transparent to-gray-950"></div>
+    
+    </div>
+
+    <!-- CONTENT -->
+
+    <!-- Subtitle whoami -->
+    <p class="text-sky-500 font-mono mb-3 mt-4">$ WHOAMI</p>
+
+    <!-- Name -->
+    <h1 class="text-5xl font-semibold">
+        Fatima Hosseini
+    </h1>
+
+    <!-- Description -->
+    <p class="mt-6 text-gray-300 text-lg">
+        Backend Developer. I build reliable APIs, data pipelines,
+        and developer tools — with a soft spot for clean abstractions and good documentation.
+    </p>
+
+    <!-- Buttons -->
+    <div class="mt-10 flex gap-4">
+        <a class="relative inline-flex items-center gap-2
+        bg-gradient-to-r from-sky-600 to-blue-600
+        hover:from-sky-500 hover:to-blue-500
+        text-white font-medium
+        px-5 py-2.5 rounded-lg
+        shadow-[0_0_25px_rgba(59,130,246,0.25)]
+        hover:shadow-[0_0_40px_rgba(59,130,246,0.35)]
+        transition-all duration-300 ease-out
+        active:scale-95
+        hover:-translate-y-1 hover:scale-[1.02]
+        focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-gray-950
+        overflow-hidden"
+           href="#">
+            Read the blog &rarr;
+        </a>
+
+        <a class="inline-flex items-center
+        px-5 py-2.5
+        rounded-lg
+        border border-gray-600
+        hover:border-gray-500
+        text-white/90"
+           href="/projects/">
+            Get in touch
+        </a>
+    </div>
+
+    <!-- CARDS -->
+    <div class="mt-10 grid md:grid-cols-2 gap-6">
+
+        <!-- Card 1 -->
+        <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-6
+                    transition duration-300 relative overflow-hidden
+                    hover:-translate-y-1
+                    hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]
+                    hover:border-gray-700">
+
+            <p class="text-xs font-mono text-gray-400 uppercase tracking-wider">
+                Currently
+            </p>
+
+            <h3 class="mt-2 text-lg font-semibold text-white">
+                Working on
+            </h3>
+
+            <p class="mt-3 text-gray-300 leading-relaxed">
+                Building backend systems in Go and Python. Exploring observability and database internals.
+            </p>
+
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-gray-900/60 border border-gray-800 rounded-xl p-6
+                    transition duration-300 relative overflow-hidden
+                    hover:-translate-y-1
+                    hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]
+                    hover:border-gray-700">
+
+            <p class="text-xs font-mono text-gray-400 uppercase tracking-wider">
+                Writing
+            </p>
+
+            <h3 class="mt-2 text-lg font-semibold text-white">
+                On the blog
+            </h3>
+
+            <p class="mt-3 text-gray-300 leading-relaxed">
+                Notes on distributed systems, Postgres patterns, and the small details that make APIs feel good.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- SKILLS SCROLLER -->
+    <div class="relative mt-12 overflow-hidden">
+
+        <!-- LEFT FADE -->
+        <div class="absolute left-0 top-0 h-full w-24 z-10
+                    bg-gradient-to-r from-gray-950 to-transparent"></div>
+
+        <!-- RIGHT FADE -->
+        <div class="absolute right-0 top-0 h-full w-24 z-10
+                    bg-gradient-to-l from-gray-950 to-transparent"></div>
+
+        <!-- SCROLL WRAPPER -->
+        <div class="flex w-max gap-6 animate-scroll">
+
+            <!-- ITEMS -->
+            <div class="flex gap-6 text-gray-400 font-mono text-sm">
+
+                <span>Rust</span>
+                <span>Go</span>
+                <span>TypeScript</span>
+                <span>Python</span>
+                <span>React</span>
+                <span>PostgreSQL</span>
+                <span>Docker</span>
+                <span>Kubernetes</span>
+                <span>gRPC</span>
+                <span>WebAssembly</span>
+                <span>Linux</span>
+                <span>Redis</span>
+
+            </div>
+
+            <!-- DUPLICATE (for seamless loop) -->
+            <div class="flex gap-6 text-gray-400 font-mono text-sm">
+
+                <span>Rust</span>
+                <span>Go</span>
+                <span>TypeScript</span>
+                <span>Python</span>
+                <span>React</span>
+                <span>PostgreSQL</span>
+                <span>Docker</span>
+                <span>Kubernetes</span>
+                <span>gRPC</span>
+                <span>WebAssembly</span>
+                <span>Linux</span>
+                <span>Redis</span>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="mt-32">
+
+    <!-- HEADER -->
+    <div class="mb-10">
+        <p class="text-sky-500 font-mono">$ cat about.txt</p>
+        <h2 class="text-4xl font-semibold mt-2">About</h2>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-2 gap-10">
+
+        <!-- LEFT: STORY -->
+        <div>
+
+            <p class="text-gray-300 font-mono text-sm leading-relaxed">
+                I'm a systems engineer focused on building reliable and fast software.<br><br>
+
+                I started writing C in university to understand how operating systems actually work, and never really stopped going lower. These days I mostly work with Rust for systems software and Go for scalable backend services.<br><br>
+
+                I've worked across database infrastructure, fintech, and small engineering teams — which shaped how I think about correctness, performance, and the hidden cost of abstractions.<br><br>
+            </p>
+
+        </div>
+
+        <!-- RIGHT: INFO PANEL -->
+        <div class="space-y-5 font-mono text-sm">
+
+            <!-- ITEM -->
+            <div class="space-y-1">
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-300">Location</p>
+                    <p class="text-gray-400 text-right">Berlin, DE</p>
+                </div>
+                <div class="h-px bg-gray-800/70 mt-2"></div>
+            </div>
+
+            <div class="space-y-1">
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-300">Focus</p>
+                    <p class="text-gray-400 text-right">Systems / Infra</p>
+                </div>
+                <div class="h-px bg-gray-800/70 mt-2"></div>
+            </div>
+
+            <div class="space-y-1">
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-300">Languages</p>
+                    <p class="text-gray-400 text-right">Rust, Go, TypeScript</p>
+                </div>
+                <div class="h-px bg-gray-800/70 mt-2"></div>
+            </div>
+
+            <div class="space-y-1">
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-300">Editor</p>
+                    <p class="text-gray-400 text-right">Neovim</p>
+                </div>
+                <div class="h-px bg-gray-800/70 mt-2"></div>
+            </div>
+
+            <div class="space-y-1">
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-300">Shell</p>
+                    <p class="text-gray-400 text-right">Zsh + Tmux</p>
+                </div>
+                <div class="h-px bg-gray-800/70 mt-2"></div>
+            </div>
+
+            <div class="space-y-1">
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-300">OS</p>
+                    <p class="text-gray-400 text-right">Arch Linux</p>
+                </div>
+                <div class="h-px bg-gray-800/70 mt-2"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+<section class="mt-32">
+
+    <!-- HEADER -->
+    <div class="mb-10">
+        <p class="text-sky-500 font-mono">$ ls ./projects</p>
+        <h2 class="text-4xl font-semibold mt-2">Projects</h2>
+    </div>
+
+    <!-- GRID -->
+    <div class="grid md:grid-cols-2 gap-5">
+
+        <!-- CARD 1 -->
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-5
+                    flex flex-col
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-gray-600
+                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
+                    min-h-[220px]">
+
+            <div>
+                <h3 class="text-white font-semibold flex items-center justify-between">
+                    goproxy-lite
+                    <span class="text-gray-500 text-sm">↗</span>
+                </h3>
+
+                <p class="text-gray-400 text-sm mt-2">
+                    Minimal Go module proxy with caching and private registry support.
+                    Drop-in replacement for GOPROXY with 3× better throughput.
+                </p>
+            </div>
+
+            <div class="mt-auto pt-4">
+
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                    <span class="text-xs text-gray-300">Go</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        go
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        proxy
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        module
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-5
+                    flex flex-col
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-gray-600
+                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
+                    min-h-[220px]">
+
+            <div>
+                <h3 class="text-white font-semibold flex items-center justify-between">
+                    goproxy-lite
+                    <span class="text-gray-500 text-sm">↗</span>
+                </h3>
+
+                <p class="text-gray-400 text-sm mt-2">
+                    Minimal Go module proxy with caching and private registry support.
+                    Drop-in replacement for GOPROXY with 3× better throughput.
+                </p>
+            </div>
+
+            <div class="mt-auto pt-4">
+
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                    <span class="text-xs text-gray-300">Go</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        go
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        proxy
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        module
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-5
+                    flex flex-col
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-gray-600
+                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
+                    min-h-[220px]">
+
+            <div>
+                <h3 class="text-white font-semibold flex items-center justify-between">
+                    goproxy-lite
+                    <span class="text-gray-500 text-sm">↗</span>
+                </h3>
+
+                <p class="text-gray-400 text-sm mt-2">
+                    Minimal Go module proxy with caching and private registry support.
+                    Drop-in replacement for GOPROXY with 3× better throughput.
+                </p>
+            </div>
+
+            <div class="mt-auto pt-4">
+
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                    <span class="text-xs text-gray-300">Go</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        go
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        proxy
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        module
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- CARD 4 -->
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-5
+                    flex flex-col
+                    transition-all duration-300
+                    hover:-translate-y-1
+                    hover:border-gray-600
+                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
+                    min-h-[220px]">
+
+            <div>
+                <h3 class="text-white font-semibold flex items-center justify-between">
+                    goproxy-lite
+                    <span class="text-gray-500 text-sm">↗</span>
+                </h3>
+
+                <p class="text-gray-400 text-sm mt-2">
+                    Minimal Go module proxy with caching and private registry support.
+                    Drop-in replacement for GOPROXY with 3× better throughput.
+                </p>
+            </div>
+
+            <div class="mt-auto pt-4">
+
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                    <span class="text-xs text-gray-300">Go</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mt-3">
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        go
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        proxy
+                    </span>
+
+                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
+                        module
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Github -->
+<section class="mt-32">
+
+    <div class="flex items-center justify-between mb-10">
+
+        <div>
+            <p class="text-sky-500 font-mono">$ git log --repos</p>
+            <h2 class="text-4xl font-semibold mt-2">
+                GitHub Projects
+            </h2>
+            <p class="text-gray-400 mt-2 text-sm">
+                A selection of repositories and experiments.
+            </p>
+        </div>
+
+        <a href="https://github.com/fatiimahoseini" target="_blank"
+           class="text-sm text-sky-400 hover:text-sky-300 transition">
+            View all →
+        </a>
+
+    </div>
+
+    <!-- LIST -->
+    <div class="space-y-5">
+
+        <!-- Repo Card -->
+        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl p-5
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-1 hover:scale-[1.01]
+                    hover:border-gray-700
+                    hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
+
+            <div class="flex items-start justify-between">
+
+                <div>
+                    <h3 class="text-white font-semibold text-lg group-hover:text-sky-300 transition">
+                        Portfolio Backend API
+                    </h3>
+
+                    <p class="text-gray-400 text-sm mt-2">
+                        Django-based backend for portfolio system with blog + projects.
+                    </p>
+
+                    <div class="mt-3 text-xs text-sky-400 font-mono">
+                        Python • Django • PostgreSQL
+                    </div>
+                </div>
+
+                <a href="#"
+                   class="text-xs px-3 py-1 rounded-md border border-gray-700
+                          text-gray-300 hover:border-sky-500 hover:text-sky-300
+                          transition">
+                    View
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Repo Card -->
+        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl p-5
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-1 hover:scale-[1.01]
+                    hover:border-gray-700
+                    hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
+
+            <div class="flex items-start justify-between">
+
+                <div>
+                    <h3 class="text-white font-semibold text-lg group-hover:text-sky-300 transition">
+                        Mini OS Simulator
+                    </h3>
+
+                    <p class="text-gray-400 text-sm mt-2">
+                        Simple OS concepts simulation for educational purposes.
+                    </p>
+
+                    <div class="mt-3 text-xs text-sky-400 font-mono">
+                        C • Systems • Linux
+                    </div>
+                </div>
+
+                <a href="#"
+                   class="text-xs px-3 py-1 rounded-md border border-gray-700
+                          text-gray-300 hover:border-sky-500 hover:text-sky-300
+                          transition">
+                    View
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Repo Card -->
+        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl p-5
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-1 hover:scale-[1.01]
+                    hover:border-gray-700
+                    hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
+
+            <div class="flex items-start justify-between">
+
+                <div>
+                    <h3 class="text-white font-semibold text-lg group-hover:text-sky-300 transition">
+                        ML Experiments
+                    </h3>
+
+                    <p class="text-gray-400 text-sm mt-2">
+                        Collection of small machine learning experiments and notes.
+                    </p>
+
+                    <div class="mt-3 text-xs text-sky-400 font-mono">
+                        Python • ML • NumPy
+                    </div>
+                </div>
+
+                <a href="#"
+                   class="text-xs px-3 py-1 rounded-md border border-gray-700
+                          text-gray-300 hover:border-sky-500 hover:text-sky-300
+                          transition">
+                    View
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Blog -->
+<section class="mt-32">
+
+    <!-- HEADER -->
+    <div>
+        <p class="text-sky-500 font-mono mb-3">$ ls ./blogs</p>
+        <h2 class="text-5xl font-semibold">
+            Blog
+        </h2>
+        <p class="mt-6 text-gray-300 text-lg">
+            A collection of backend systems, experiments, and tools I've built.
+        </p>
+    </div>
+
+    <!-- GRID -->
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+
+        <!-- CARD 1 -->
+        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-2 hover:scale-[1.02]
+                    hover:border-gray-700
+                    hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
+
+            <div class="h-40 overflow-hidden bg-gray-800">
+                <img src="/media/blog/3.jpg"
+                     class="w-full h-full object-cover
+                            transition duration-500
+                            group-hover:scale-110">
+            </div>
+
+            <div class="p-5">
+
+                <h3 class="text-white font-semibold text-lg">
+                    API Gateway
+                </h3>
+
+                <p class="mt-2 text-sm text-gray-300">
+                    High-performance gateway built with Go and rate limiting support.
+                </p>
+
+                <!-- META -->
+                <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-400">
+
+                    <!-- DATE -->
+                    <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="w-3.5 h-3.5 text-gray-500"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Jan 2026</span>
+                    </div>
+
+                    <!-- READ TIME -->
+                    <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             class="w-3.5 h-3.5 text-gray-500"
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>6 min read</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-2 hover:scale-[1.02]
+                    hover:border-gray-700
+                    hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
+
+            <div class="h-40 overflow-hidden bg-gray-800">
+                <img src="/media/blog/1.jpg"
+                     class="w-full h-full object-cover
+                            transition duration-500
+                            group-hover:scale-110">
+            </div>
+
+            <div class="p-5">
+
+                <h3 class="text-white font-semibold text-lg">
+                    DB Monitor
+                </h3>
+
+                <p class="mt-2 text-sm text-gray-300">
+                    Tool for tracking database performance and slow queries.
+                </p>
+
+                <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-400">
+
+                    <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Feb 2026</span>
+                    </div>
+
+                    <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>8 min read</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-2 hover:scale-[1.02]
+                    hover:border-gray-700
+                    hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
+
+            <div class="h-40 overflow-hidden bg-gray-800">
+                <img src="/media/blog/2.jpg"
+                     class="w-full h-full object-cover
+                            transition duration-500
+                            group-hover:scale-110">
+            </div>
+
+            <div class="p-5">
+
+                <h3 class="text-white font-semibold text-lg">
+                    Auth System
+                </h3>
+
+                <p class="mt-2 text-sm text-gray-300">
+                    Secure authentication service with JWT and refresh tokens.
+                </p>
+
+                <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-400">
+
+                    <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span>Dec 2025</span>
+                    </div>
+
+                    <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span>5 min read</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Contact -->
+<section class="mt-32 mb-24">
+
+    <!-- title -->
+    <div class="mb-10">
+        <p class="text-sky-500 font-mono">$ cat contact.txt</p>
+        <h2 class="text-4xl font-semibold mt-2">Contact</h2>
+    </div>
+
+    <!-- column -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 justify-items-stretch md:justify-items-start">
+
+        <!-- left column -->
+        <div class="md:col-span-9">
+            <p class="text-gray-300 leading-relaxed max-w-2xl">
+                I'm open to interesting problems — freelance contracts, advisory, or full-time roles involving distributed systems, developer tooling, or language runtimes. Response within 48 hours.
+            </p>
+
+            <div class="mt-8">
+                <a href="mailto:alex@alexrivera.dev"
+                   class="inline-flex items-center gap-2 bg-sky-500 text-black px-4 py-2 rounded font-medium hover:bg-sky-400 transition-colors">
+                    <svg class="w-5 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18a2 2 0 002-2V6a2 2 0 00-2-2H3a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    <span>alex@alexrivera.dev</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- right -->
+        <div class="md:col-span-3 md:justify-self-end space-y-4">
+            <a href="#" class="flex items-center gap-3 text-gray-400 hover:text-white transition">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>@alex_rivera</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 text-gray-400 hover:text-white transition">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                <span>@a_rivera_dev</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 text-gray-400 hover:text-white transition">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <span>in/alexrivera</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
