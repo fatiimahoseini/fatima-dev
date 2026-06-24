@@ -1,9 +1,44 @@
 <nav class="flex justify-between p-7 border-b border-gray-800 font-mono">
-    <a href="/" class="font-bold">fatima.dev_</a>
 
-    <div class="space-x-6">
-        <a href="/projects/">Projects</a>
-        <a href="/blog/">Blog</a>
-        <a href="/contact/">Contact</a>
+    <!-- Logo -->
+    <a href="{% url 'home' %}"
+       class="font-bold transition
+       hover:text-sky-400">
+        fatima.dev<span class="text-sky-500">_</span>
+    </a>
+
+    <!-- Links -->
+    <div class="flex gap-6">
+
+        <a href="{% url 'projects' %}"
+           class="relative transition
+           {% if request.path == '/projects/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
+            Projects
+
+            {% if request.path == '/projects/' %}
+            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
+            {% endif %}
+        </a>
+
+        <a href="{% url 'blog' %}"
+           class="relative transition
+           {% if request.path == '/blog/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
+            Blog
+
+            {% if request.path == '/blog/' %}
+            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
+            {% endif %}
+        </a>
+
+        <a href="{% url 'contact' %}"
+           class="relative transition
+           {% if request.path == '/contact/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
+            Contact
+
+            {% if request.path == '/contact/' %}
+            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
+            {% endif %}
+        </a>
+
     </div>
 </nav>
