@@ -10,8 +10,8 @@ function drawFavicon() {
 
     ctx.clearRect(0, 0, 64, 64);
 
-    ctx.fillStyle = "#38bdf8";
-    ctx.font = "bold 48px monospace";
+    ctx.fillStyle = "#3984F5";
+    ctx.font = "bold 60px monospace";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
