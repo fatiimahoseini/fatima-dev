@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<style>
+    #starfield {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
+</style>
+
+<!-- BACKGROUND LAYERS -->
+<div class="absolute inset-0 -z-10 overflow-hidden">
+
+    <!-- SPACE TINT -->
+    <div class="absolute inset-0
+        bg-[radial-gradient(circle_at_80%_20%,oklch(50%_0.134_242.749_/_0.06),transparent_35%)]">
+    </div>
+
+    <!-- GLOWS -->
+    <!-- <div class="absolute w-[600px] h-[600px]
+        right-[-200px] top-[-120px]
+        bg-sky-800/10 blur-[200px]">
+    </div> -->
+
+    <div class="absolute w-[500px] h-[500px]
+        left-[-150px] bottom-[-150px]
+        bg-sky-700/10 blur-[220px]">
+    </div>
+
+</div>
+
+<canvas id="starfield"></canvas>
+
+<section class="relative z-10 flex flex-col justify-center">
+
+    <!-- HEADER -->
+    <div class="mb-10 relative">
+        <p class="text-sky-500 font-mono">$ contact --open</p>
+        <h1 class="text-4xl font-semibold mt-2 relative inline-block">
+            Contact
+        </h1>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-12 relative">
+
+        <!-- dashed divider (center line) -->
+        <div class="hidden md:block absolute top-0 h-full w-px
+            left-[55%]
+            bg-gradient-to-b from-transparent via-gray-700/40 to-transparent
+            border-l border-dashed border-gray-700/30"></div>
+
+        <!-- LEFT -->
+        <div>
+            <p class="mt-2 text-gray-300 text-lg leading-relaxed">
+                I’m open to interesting engineering work — freelance, advisory, or full-time roles focused on distributed systems, developer tools, and infrastructure-heavy products.<br><br>
+            </p>
+
+            <div class="mt-4">
+                <a href="mailto:fatiimahoseini@gmail.com"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
+                        bg-slate-900 text-sky-400 border border-sky-500/20
+                        hover:-translate-y-1 hover:bg-sky-500/10
+                        hover:border-sky-400/40
+                        transition-all duration-300">
+
+                    Send email →
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="space-y-4 font-mono text-sm">
+
+            <!-- GitHub -->
+            <a href="https://github.com/fatiimahoseini"
+            class="flex items-center justify-between text-gray-400 hover:text-white transition group
+            hover:bg-sky-500/10 rounded-md px-4 py-2">
+
+                <span class="flex items-center gap-2">
+                    <!-- icon -->
+                    <svg class="w-5 h-5 text-sky-500 group-hover:text-sky-400 transition"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482
+                              0-.237-.009-.866-.014-1.699-2.782.605-3.369-1.342-3.369-1.342
+                              -.454-1.154-1.11-1.462-1.11-1.462-.907-.62.069-.607.069-.607
+                              1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832
+                              .091-.647.35-1.088.636-1.338-2.22-.252-4.555-1.11-4.555-4.942
+                              0-1.091.39-1.983 1.029-2.681-.103-.253-.446-1.272.098-2.65
+                              0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337
+                              1.909-1.294 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65
+                              .64.698 1.028 1.59 1.028 2.681 0 3.842-2.338 4.687-4.566 4.935
+                              .359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747
+                              0 .267.18.578.688.48A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+
+                    GitHub
+                </span>
+
+                <span class="text-gray-600">
+                    @fatiimahoseini
+                    <span class="text-sky-500 text-lg">↩</span>
+                </span>
+            </a>
+
+            <div class="h-px bg-gray-800/60"></div>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/fatiimahoseini/"
+            class="flex items-center justify-between text-gray-400 hover:text-white transition group
+                    hover:bg-sky-500/10 rounded-md px-4 py-2">
+
+                <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-sky-500 group-hover:text-sky-400 transition"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                              d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                              d="M2 9h4v12H2z"/>
+                        <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+
+                    LinkedIn
+                </span>
+
+                <span class="text-gray-600">
+                    /in/fatiimahoseini
+                    <span class="text-sky-500 text-lg">↩</span>
+                </span>
+            </a>
+
+            <div class="h-px bg-gray-800/60"></div>
+
+            <!-- Phone -->
+            <a href="tel:00989383703205"
+            class="flex items-center justify-between text-gray-400 hover:text-white transition group
+            hover:bg-sky-500/10 rounded-md px-4 py-2">
+
+                <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-sky-500 group-hover:text-sky-400 transition"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                              d="M3 5a2 2 0 012-2h2.28a1 1 0 01.948.684l1.518 4.554a1 1 0 01-.272 1.06L7.21 10.79
+                              a16.001 16.001 0 006.59 6.59l1.492-1.492a1 1 0 011.06-.272l4.554 1.518A1 1 0 0121 17.72V20a2 2 0 01-2 2h-1
+                              C9.163 22 2 14.837 2 6V5z"/>
+                    </svg>
+
+                    Phone
+                </span>
+
+                <span class="text-gray-600">
+                    +98 938 370 3205
+                    <span class="text-sky-500 text-lg">↩</span>
+                </span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<script src="{% static 'starfield/script.js' %}"></script>
+{% endblock %}
