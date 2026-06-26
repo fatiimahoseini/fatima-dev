@@ -10,7 +10,8 @@
     <!-- Links -->
     <div class="flex gap-6">
 
-        <a href="{% url 'projects' %}"
+        <!-- <a href="{% url 'projects' %}"
+            target="_blank"
            class="relative transition
            {% if request.path == '/projects/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
             Projects
@@ -18,9 +19,10 @@
             {% if request.path == '/projects/' %}
             <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
             {% endif %}
-        </a>
+        </a> -->
 
         <a href="{% url 'blog' %}"
+           target="_blank"
            class="relative transition
            {% if request.path == '/blog/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
             Blog
@@ -31,6 +33,7 @@
         </a>
 
         <a href="{% url 'contact' %}"
+           target="_blank"
            class="relative transition
            {% if request.path == '/contact/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
             Contact
