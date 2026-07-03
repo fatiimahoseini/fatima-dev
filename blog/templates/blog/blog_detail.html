@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Building in Public{% endblock %}
+
+{% block content %}
+
+<section class="max-w-7xl mx-auto px-4 py-10">
+
+    <!-- Back -->
+    <a href="{% url 'blog' %}"
+       class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition mb-8">
+
+        ← Back to Blog
+
+    </a>
+
+    <!-- Category -->
+    <div class="mb-5">
+
+        <span
+        class="
+        inline-flex
+        px-3
+        py-1
+        rounded-lg
+        bg-activeEl
+        border
+        border-slate-800
+        text-blue-400
+        text-sm
+        ">
+            Django
+        </span>
+
+    </div>
+
+    <!-- Title -->
+    <header class="max-w-4xl mb-8">
+
+        <h1
+        class="
+        text-4xl
+        md:text-6xl
+        font-bold
+        text-white
+        leading-tight
+        mb-6
+        ">
+            Building in Public:
+            My Developer Journey
+        </h1>
+
+        <p
+        class="
+        text-lg
+        text-slate-400
+        leading-relaxed
+        max-w-3xl
+        mb-6
+        ">
+            A detailed look into my journey as a developer,
+            lessons learned, mistakes made and projects built.
+        </p>
+
+        <div class="flex flex-wrap gap-4 text-sm text-slate-500">
+
+            <span>Jun 24, 2026</span>
+
+            <span>•</span>
+
+            <span>8 min read</span>
+
+            <span>•</span>
+
+            <span>Fatima</span>
+
+        </div>
+
+    </header>
+
+    <!-- Hero -->
+    <div
+    class="
+    relative
+    overflow-hidden
+    rounded-2xl
+    border
+    border-slate-800
+    mb-12
+    ">
+
+        <img
+        src="/media/blog/1.jpg"
+        alt=""
+        class="w-full aspect-[21/9] object-cover">
+
+        <div
+        class="
+        absolute
+        inset-0
+        bg-gradient-to-t
+        from-black
+        via-black/40
+        to-transparent
+        ">
+        </div>
+
+    </div>
+
+    <!-- Content Area -->
+    <div class="grid lg:grid-cols-12 gap-10">
+
+        <!-- TOC -->
+        <aside class="hidden lg:block lg:col-span-3">
+
+            <div
+            class="
+            sticky
+            top-24
+            bg-surface
+            border
+            border-slate-800
+            rounded-xl
+            p-5
+            ">
+
+                <div class="flex items-center gap-2 mb-5">
+
+                    <h3
+                    class="
+                    text-blue-400
+                    text-sm
+                    font-semibold
+                    uppercase
+                    tracking-wider
+                    ">
+                        On This Page
+                    </h3>
+
+                    <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+
+                </div>
+
+                <ul class="space-y-3">
+
+                    <li><a href="#intro" class="text-slate-400 hover:text-white">Introduction</a></li>
+
+                    <li><a href="#journey" class="text-slate-400 hover:text-white">The Journey</a></li>
+
+                    <li><a href="#lessons" class="text-slate-400 hover:text-white">Lessons Learned</a></li>
+
+                    <li><a href="#future" class="text-slate-400 hover:text-white">Future Plans</a></li>
+
+                </ul>
+
+            </div>
+
+        </aside>
+
+        <!-- Article -->
+        <article class="lg:col-span-9">
+
+            <div class="article-content">
+
+                <h2 id="intro">Introduction</h2>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Eaque pariatur repellendus doloremque voluptatum.
+                </p>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Dignissimos minima porro molestiae adipisci.
+                </p>
+
+                <blockquote>
+                    The best way to learn programming is by building real projects.
+                </blockquote>
+
+                <h2 id="journey">The Journey</h2>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Quisquam unde harum perspiciatis.
+                </p>
+
+<pre><code>
+python manage.py runserver
+</code></pre>
+
+                <h2 id="lessons">Lessons Learned</h2>
+
+                <ul>
+                    <li>Ship faster.</li>
+                    <li>Don't overengineer.</li>
+                    <li>Focus on consistency.</li>
+                </ul>
+
+                <h2 id="future">Future Plans</h2>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Autem laboriosam facere impedit.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+    <!-- Tags -->
+    <div class="border-t border-slate-800 mt-16 pt-8">
+
+        <div class="flex flex-wrap gap-3">
+
+            <span class="px-3 py-1 rounded-lg bg-activeEl border border-slate-800 text-slate-300">
+                Django
+            </span>
+
+            <span class="px-3 py-1 rounded-lg bg-activeEl border border-slate-800 text-slate-300">
+                Python
+            </span>
+
+            <span class="px-3 py-1 rounded-lg bg-activeEl border border-slate-800 text-slate-300">
+                Career
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Prev Next -->
+    <div class="border-t border-slate-800 mt-16 pt-10">
+
+        <div class="grid md:grid-cols-2 gap-5">
+
+            <a href="#"
+               class="
+               group
+               rounded-xl
+               border
+               border-slate-800
+               bg-surface
+               hover:bg-cardHover
+               transition
+               p-5
+               ">
+
+                <div class="text-xs uppercase text-slate-500 mb-2">
+                    Previous Post
+                </div>
+
+                <div class="text-white group-hover:text-blue-400">
+                    Django Signals Explained
+                </div>
+
+            </a>
+
+            <a href="#"
+               class="
+               group
+               rounded-xl
+               border
+               border-slate-800
+               bg-surface
+               hover:bg-cardHover
+               transition
+               p-5
+               text-right
+               ">
+
+                <div class="text-xs uppercase text-slate-500 mb-2">
+                    Next Post
+                </div>
+
+                <div class="text-white group-hover:text-blue-400">
+                    REST API Best Practices
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
