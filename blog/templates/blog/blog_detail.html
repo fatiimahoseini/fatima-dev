@@ -1,290 +1,303 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %}Building in Public{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}Building in
+Public{% endblock %} {% block content %}
 
 <section class="max-w-7xl mx-auto px-4 py-10">
+  <!-- Back -->
+  <a
+    href="{% url 'blog' %}"
+    class="inline-flex items-center gap-2 text-md text-slate-400 hover:text-white transition mb-8"
+  >
+    <span class="text-sky-500">&larr;</span> Back to Blog
+  </a>
 
-    <!-- Back -->
-    <a href="{% url 'blog' %}"
-       class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition mb-8">
+  <!-- Hero -->
+  <div
+    class="relative overflow-hidden rounded-2xl border border-slate-800 mb-10"
+  >
+    <img
+      src="/media/blog/p1.png"
+      alt=""
+      class="w-full aspect-[32/9] object-cover"
+    />
+  </div>
 
-        ← Back to Blog
+  <!-- Title -->
+  <header class="mb-1">
+    <h1 class="text-5xl font-bold text-white leading-tight mb-5">
+      Building in Public: My Developer Journey
+    </h1>
 
-    </a>
+    <p class="text-lg text-slate-400 leading-relaxed mb-5">
+      A detailed look into my journey as a developer, lessons learned, mistakes
+      made and projects built.
+    </p>
 
-    <!-- Category -->
-    <div class="mb-5">
+    <!-- Info -->
+    <div
+      class="flex flex-wrap items-center gap-4 text-sm text-slate-500 pb-6 border-b border-slate-900"
+    >
+      <!-- Date -->
+      <div class="flex items-center gap-1.5">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V8.25A2.25 2.25 0 015.25 6h13.5A2.25 2.25 0 0121 8.25v10.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 18.75z"
+          />
+        </svg>
+        <span>Jun 24, 2026</span>
+      </div>
 
+      <span>•</span>
+
+      <!-- Read Time -->
+      <div class="flex items-center gap-1.5">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 6v6l4 2"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span>8 min read</span>
+      </div>
+
+      <span>•</span>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-5">
         <span
-        class="
-        inline-flex
-        px-3
-        py-1
-        rounded-lg
-        bg-activeEl
-        border
-        border-slate-800
-        text-blue-400
-        text-sm
-        ">
-            Django
+          class="px-4 py-1.5 text-sm rounded-lg border border-slate-800 text-sky-500"
+        >
+          #Django
         </span>
 
+        <span
+          class="px-4 py-1.5 text-sm rounded-lg border border-slate-800 text-sky-500"
+        >
+          #Python
+        </span>
+
+        <span
+          class="px-4 py-1.5 text-sm rounded-lg border border-slate-800 text-sky-500"
+        >
+          #Backend
+        </span>
+      </div>
     </div>
+  </header>
 
-    <!-- Title -->
-    <header class="max-w-4xl mb-8">
+  <!-- Content Area -->
+  <div class="grid lg:grid-cols-12 gap-10">
+    <!-- TOC -->
+    <aside class="hidden lg:block lg:col-span-3 pt-11">
+      <div class="sticky top-24">
+        <div class="border border-slate-800 rounded-lg p-5">
+          <!-- Header -->
+          <h3
+            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+          >
+            ON THIS PAGE
+          </h3>
 
-        <h1
-        class="
-        text-4xl
-        md:text-6xl
-        font-bold
-        text-white
-        leading-tight
-        mb-6
-        ">
-            Building in Public:
-            My Developer Journey
-        </h1>
+          <!-- Divider -->
+          <div class="mt-4 border-t border-slate-800"></div>
 
-        <p
-        class="
-        text-lg
-        text-slate-400
-        leading-relaxed
-        max-w-3xl
-        mb-6
-        ">
-            A detailed look into my journey as a developer,
-            lessons learned, mistakes made and projects built.
+          <!-- Nav -->
+          <div class="relative mt-5">
+            <!-- Vertical line -->
+            <div
+              class="absolute left-[5px] top-0 bottom-0 w-px bg-slate-800"
+            ></div>
+
+            <ul class="space-y-5">
+              <!-- Active -->
+              <li class="relative pl-6">
+                <span
+                  class="absolute left-0 top-1/2 -translate-y-1/2 w-[11px] h-[11px] rounded-full bg-blue-500"
+                ></span>
+
+                <a href="#intro" class="text-blue-400 font-medium">
+                  Introduction
+                </a>
+              </li>
+
+              <!-- Normal -->
+              <li class="relative pl-6">
+                <a
+                  href="#journey"
+                  class="text-slate-400 hover:text-white transition-colors"
+                >
+                  The Journey
+                </a>
+              </li>
+
+              <li class="relative pl-6">
+                <a
+                  href="#lessons"
+                  class="text-slate-400 hover:text-white transition-colors"
+                >
+                  Lessons Learned
+                </a>
+              </li>
+
+              <li class="relative pl-6">
+                <a
+                  href="#future"
+                  class="text-slate-400 hover:text-white transition-colors"
+                >
+                  Future Plans
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Article -->
+    <article class="lg:col-span-9">
+      <div class="article-content">
+        <h2 id="intro">Introduction</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
+          pariatur repellendus doloremque voluptatum.
         </p>
 
-        <div class="flex flex-wrap gap-4 text-sm text-slate-500">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+          minima porro molestiae adipisci.
+        </p>
 
-            <span>Jun 24, 2026</span>
+        <blockquote>
+          The best way to learn programming is by building real projects.
+        </blockquote>
 
-            <span>•</span>
+        <h2 id="journey">The Journey</h2>
 
-            <span>8 min read</span>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam unde
+          harum perspiciatis.
+        </p>
 
-            <span>•</span>
+        <pre><code>
+          python manage.py runserver
+        </code></pre>
 
-            <span>Fatima</span>
+        <h2 id="lessons">Lessons Learned</h2>
 
-        </div>
+        <ul>
+          <li>Ship faster.</li>
+          <li>Don't overengineer.</li>
+          <li>Focus on consistency.</li>
+        </ul>
 
-    </header>
+        <h2 id="future">Future Plans</h2>
 
-    <!-- Hero -->
-    <div
-    class="
-    relative
-    overflow-hidden
-    rounded-2xl
-    border
-    border-slate-800
-    mb-12
-    ">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
+          laboriosam facere impedit.
+        </p>
+      </div>
+    </article>
+  </div>
 
-        <img
-        src="/media/blog/1.jpg"
-        alt=""
-        class="w-full aspect-[21/9] object-cover">
+  <!-- Prev Next -->
+  <div class="mt-16 pt-10 grid lg:grid-cols-12">
+    <div class="lg:col-span-9 lg:col-start-4">
+      <div
+        class="grid md:grid-cols-2 border border-slate-800 rounded-xl overflow-hidden"
+      >
+        <!-- Previous -->
+        <a
+          href="#"
+          class="group flex items-center gap-4 p-5 hover:bg-cardHover/30 transition md:border-r md:border-slate-800"
+        >
+          <div
+            class="w-10 h-10 flex items-center bg-cardHover/50 justify-center border border-slate-700 rounded-md flex-shrink-0"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="#2F67D3"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+              />
+            </svg>
+          </div>
 
-        <div
-        class="
-        absolute
-        inset-0
-        bg-gradient-to-t
-        from-black
-        via-black/40
-        to-transparent
-        ">
-        </div>
-
-    </div>
-
-    <!-- Content Area -->
-    <div class="grid lg:grid-cols-12 gap-10">
-
-        <!-- TOC -->
-        <aside class="hidden lg:block lg:col-span-3">
-
-            <div
-            class="
-            sticky
-            top-24
-            bg-surface
-            border
-            border-slate-800
-            rounded-xl
-            p-5
-            ">
-
-                <div class="flex items-center gap-2 mb-5">
-
-                    <h3
-                    class="
-                    text-blue-400
-                    text-sm
-                    font-semibold
-                    uppercase
-                    tracking-wider
-                    ">
-                        On This Page
-                    </h3>
-
-                    <div class="w-2 h-2 rounded-full bg-blue-500"></div>
-
-                </div>
-
-                <ul class="space-y-3">
-
-                    <li><a href="#intro" class="text-slate-400 hover:text-white">Introduction</a></li>
-
-                    <li><a href="#journey" class="text-slate-400 hover:text-white">The Journey</a></li>
-
-                    <li><a href="#lessons" class="text-slate-400 hover:text-white">Lessons Learned</a></li>
-
-                    <li><a href="#future" class="text-slate-400 hover:text-white">Future Plans</a></li>
-
-                </ul>
-
+          <div class="min-w-0">
+            <div class="text-xs uppercase tracking-wider text-slate-500">
+              PREVIOUS POST
             </div>
-
-        </aside>
-
-        <!-- Article -->
-        <article class="lg:col-span-9">
-
-            <div class="article-content">
-
-                <h2 id="intro">Introduction</h2>
-
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Eaque pariatur repellendus doloremque voluptatum.
-                </p>
-
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dignissimos minima porro molestiae adipisci.
-                </p>
-
-                <blockquote>
-                    The best way to learn programming is by building real projects.
-                </blockquote>
-
-                <h2 id="journey">The Journey</h2>
-
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quisquam unde harum perspiciatis.
-                </p>
-
-<pre><code>
-python manage.py runserver
-</code></pre>
-
-                <h2 id="lessons">Lessons Learned</h2>
-
-                <ul>
-                    <li>Ship faster.</li>
-                    <li>Don't overengineer.</li>
-                    <li>Focus on consistency.</li>
-                </ul>
-
-                <h2 id="future">Future Plans</h2>
-
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Autem laboriosam facere impedit.
-                </p>
-
+            <div class="text-white group-hover:text-blue-400 truncate">
+              Django Signals Explained
             </div>
+          </div>
+        </a>
 
-        </article>
+        <!-- Next -->
+        <a
+          href="#"
+          class="group flex items-center justify-end gap-4 p-5 hover:bg-cardHover/30 transition text-right"
+        >
+          <div class="min-w-0">
+            <div class="text-xs uppercase tracking-wider text-slate-500">
+              NEXT POST
+            </div>
+            <div class="text-white group-hover:text-blue-400 truncate">
+              REST API Best Practices
+            </div>
+          </div>
 
+          <div
+            class="w-10 h-10 flex items-center justify-center border border-slate-700 rounded-md flex-shrink-0"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="#2F67D3"
+              class="size-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
     </div>
-
-    <!-- Tags -->
-    <div class="border-t border-slate-800 mt-16 pt-8">
-
-        <div class="flex flex-wrap gap-3">
-
-            <span class="px-3 py-1 rounded-lg bg-activeEl border border-slate-800 text-slate-300">
-                Django
-            </span>
-
-            <span class="px-3 py-1 rounded-lg bg-activeEl border border-slate-800 text-slate-300">
-                Python
-            </span>
-
-            <span class="px-3 py-1 rounded-lg bg-activeEl border border-slate-800 text-slate-300">
-                Career
-            </span>
-
-        </div>
-
-    </div>
-
-    <!-- Prev Next -->
-    <div class="border-t border-slate-800 mt-16 pt-10">
-
-        <div class="grid md:grid-cols-2 gap-5">
-
-            <a href="#"
-               class="
-               group
-               rounded-xl
-               border
-               border-slate-800
-               bg-surface
-               hover:bg-cardHover
-               transition
-               p-5
-               ">
-
-                <div class="text-xs uppercase text-slate-500 mb-2">
-                    Previous Post
-                </div>
-
-                <div class="text-white group-hover:text-blue-400">
-                    Django Signals Explained
-                </div>
-
-            </a>
-
-            <a href="#"
-               class="
-               group
-               rounded-xl
-               border
-               border-slate-800
-               bg-surface
-               hover:bg-cardHover
-               transition
-               p-5
-               text-right
-               ">
-
-                <div class="text-xs uppercase text-slate-500 mb-2">
-                    Next Post
-                </div>
-
-                <div class="text-white group-hover:text-blue-400">
-                    REST API Best Practices
-                </div>
-
-            </a>
-
-        </div>
-
-    </div>
-
+  </div>
 </section>
 
 {% endblock %}
