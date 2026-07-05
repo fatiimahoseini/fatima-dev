@@ -1,59 +1,65 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>{% block title %}Portfolio{% endblock %}</title>
-    <link id="favicon" rel="icon" type="image/png">
-    
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/article.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link id="favicon" rel="icon" type="image/png" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/article.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        tailwind.config = {
-          theme: {
-            extend: {
-              colors: {
-                background: '#030A10',
-                surface: '#060F17',
-                activeEl: '#081529',
-                cardHover: '#0E1823',
-                primary: '#2F67D3',
-                primaryDark: '#0E2353',
-                light: '#8AD0FF',
-                foreground: '#FFFEFC',
-                muted: '#758293',
-              },
-              fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                mono: ['JetBrains Mono', 'monospace'],
-              }
-            }
-          }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              background: "#010813",
+              // background: '#030A10',
+              surface: "#020B18",
+              // surface: "#060F17",
+              activeEl: "#061631",
+              // activeEl: "#081529",
+              cardHover: "#051125",
+              // cardHover: "#0E1823",
+              primary: "#2F67D3",
+              primaryDark: "#0E2353",
+              light: "#8AD0FF",
+              foreground: "#FFFEFC",
+              muted: "#758293",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+          },
+        },
+      };
     </script>
-</head>
+  </head>
 
-<body class="bg-background text-white font-sans antialiased min-h-screen flex flex-col">
-  
-<!-- Navbar -->
-{% include "components/header.html" %}
+  <body
+    class="bg-background text-white font-sans antialiased min-h-screen flex flex-col"
+  >
+    <!-- Navbar -->
+    {% include "components/header.html" %}
 
-<!-- Content -->
-<main class="flex-1 px-6 py-6 flex flex-col justify-center">
-    {% block content %}
-    {% endblock %}
-</main>
+    <!-- Content -->
+    <main class="flex-1 px-6 py-6 flex flex-col justify-center">
+      {% block content %} {% endblock %}
+    </main>
 
-<!-- Footer -->
-{% include "components/footer.html" %}
-
-</body>
+    <!-- Footer -->
+    {% include "components/footer.html" %}
+  </body>
 </html>
 <script src="{% static 'js/favicon.js' %}"></script>
