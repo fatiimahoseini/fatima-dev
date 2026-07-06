@@ -156,14 +156,12 @@
   {% if previous_post or next_post %}
   <div class="mt-16 pt-10 grid lg:grid-cols-12">
     <div class="lg:col-span-9 lg:col-start-4">
-      <div
-        class="grid md:grid-cols-2 border border-slate-800 rounded-xl overflow-hidden"
-      >
+      <div class="grid md:grid-cols-2 gap-4">
         <!-- Previous -->
         {% if previous_post %}
         <a
           href="{% url 'blog_detail' previous_post.slug %}"
-          class="group flex items-center gap-4 p-5 hover:bg-cardHover/30 transition md:border-r md:border-slate-800"
+          class="group flex items-center gap-4 p-5 border border-slate-800 rounded-xl hover:bg-cardHover/30 transition"
         >
           <div
             class="w-10 h-10 flex items-center bg-cardHover/50 justify-center border border-slate-700 rounded-md flex-shrink-0"
@@ -201,7 +199,7 @@
         {% if next_post %}
         <a
           href="{% url 'blog_detail' next_post.slug %}"
-          class="group flex items-center justify-end gap-4 p-5 hover:bg-cardHover/30 transition text-right"
+          class="group flex items-center justify-end gap-4 p-5 border border-slate-800 rounded-xl hover:bg-cardHover/30 transition text-right"
         >
           <div class="min-w-0">
             <div class="text-xs uppercase tracking-wider text-slate-500">
