@@ -281,6 +281,7 @@
             >
               <a
                 href="?sort=latest{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+                style="display:block;padding:12px"
                 class="sort-option w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-activeEl transition border-b border-slate-800"
               >
                 Latest
@@ -288,6 +289,7 @@
 
               <a
                 href="?sort=oldest{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+                style="display:block;padding:12px"
                 class="sort-option w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-activeEl transition border-b border-slate-800"
               >
                 Oldest
@@ -295,6 +297,7 @@
 
               <a
                 href="?sort=popular{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+                style="display:block;padding:12px"
                 class="sort-option w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-activeEl transition"
               >
                 Most Popular
@@ -457,11 +460,18 @@
           >
             <div class="grid md:grid-cols-[280px_1fr] gap-6 p-5">
               <!-- Image -->
-              <div class="aspect-[4/3] overflow-hidden rounded-md">
+              {% comment %} <div class="aspect-[4/3] w-full overflow-hidden rounded-md">
                 <img
                   src="{{ post.image.url }}"
                   alt="{{ post.title }}"
-                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105"
+                />
+              </div> {% endcomment %}
+              <div class="w-full h-60 overflow-hidden rounded-md">
+                <img
+                  src="{{ post.image.url }}"
+                  alt="{{ post.title }}"
+                  class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105"
                 />
               </div>
 
