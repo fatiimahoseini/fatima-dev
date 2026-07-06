@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% load static %} {% block title %}{{ post.title
-}}{%endblock %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block title %} {{ post.title }}
+{%endblock %} {% block content %}
 
 <section class="max-w-7xl mx-auto px-4 py-10">
   <!-- Back -->
@@ -127,70 +127,27 @@
     <aside class="hidden lg:block lg:col-span-3 pt-11">
       <div class="sticky top-24">
         <div class="border border-slate-800 rounded-lg p-5">
-          <!-- Header -->
           <h3
             class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
           >
             ON THIS PAGE
           </h3>
 
-          <!-- Divider -->
           <div class="mt-4 border-t border-slate-800"></div>
 
-          <!-- Nav -->
           <div class="relative mt-5">
-            <!-- Vertical line -->
             <div
               class="absolute left-[5px] top-0 bottom-0 w-px bg-slate-800"
             ></div>
 
-            <ul class="space-y-5">
-              <!-- Active -->
-              <li class="relative pl-6">
-                <span
-                  class="absolute left-0 top-1/2 -translate-y-1/2 w-[11px] h-[11px] rounded-full bg-blue-500"
-                ></span>
-
-                <a href="#intro" class="text-blue-400 font-medium">
-                  Introduction
-                </a>
-              </li>
-
-              <!-- Normal -->
-              <li class="relative pl-6">
-                <a
-                  href="#journey"
-                  class="text-slate-400 hover:text-white transition-colors"
-                >
-                  The Journey
-                </a>
-              </li>
-
-              <li class="relative pl-6">
-                <a
-                  href="#lessons"
-                  class="text-slate-400 hover:text-white transition-colors"
-                >
-                  Lessons Learned
-                </a>
-              </li>
-
-              <li class="relative pl-6">
-                <a
-                  href="#future"
-                  class="text-slate-400 hover:text-white transition-colors"
-                >
-                  Future Plans
-                </a>
-              </li>
-            </ul>
+            <ul id="toc" class="space-y-5"></ul>
           </div>
         </div>
       </div>
     </aside>
 
     <!-- Article -->
-    <article class="lg:col-span-9 pt-11">
+    <article class="lg:col-span-9 pt-10">
       <div class="article-content">{{ post.content|safe }}</div>
     </article>
   </div>
@@ -280,4 +237,62 @@
   </div>
   {% endif %}
 </section>
+
+<script>
+  (function () {
+    const article = document.querySelector(".article-content");
+    const toc = document.getElementById("toc");
+    if (!article || !toc) return;
+
+    const headings = article.querySelectorAll("h2, h3");
+    const items = [];
+
+    headings.forEach((h, i) => {
+      const id = "heading-" + i;
+      h.id = id;
+      const isH3 = h.tagName === "H3";
+      items.push({ id, text: h.textContent.trim(), isH3 });
+
+      const li = document.createElement("li");
+      li.className = "relative pl-6";
+      li.innerHTML =
+        '<span class="toc-dot absolute left-0 top-1/2 -translate-y-1/2 w-[11px] h-[11px] rounded-full bg-blue-500 transition-opacity"></span>' +
+        '<a href="#' +
+        id +
+        '" class="toc-link text-slate-400 hover:text-white transition-colors ' +
+        (isH3 ? "text-sm" : "") +
+        '">' +
+        h.textContent.trim() +
+        "</a>";
+      toc.appendChild(li);
+    });
+
+    if (items.length === 0) return;
+
+    function updateToc() {
+      let current = 0;
+      headings.forEach((h, i) => {
+        if (h.getBoundingClientRect().top <= 120) current = i;
+      });
+
+      toc.querySelectorAll("li").forEach((li, i) => {
+        const dot = li.querySelector(".toc-dot");
+        const link = li.querySelector(".toc-link");
+        if (i === current) {
+          dot.classList.remove("opacity-0");
+          link.classList.add("text-blue-400", "font-medium");
+          link.classList.remove("text-slate-400");
+        } else {
+          dot.classList.add("opacity-0");
+          link.classList.remove("text-blue-400", "font-medium");
+          link.classList.add("text-slate-400");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", updateToc, { passive: true });
+    updateToc();
+  })();
+</script>
+
 {% endblock %}
