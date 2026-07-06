@@ -3,6 +3,7 @@
 
 <section class="max-w-7xl mx-auto px-4 py-7">
   <!-- Featured Post -->
+  {% if featured_posts %}
   <div class="mb-10">
     <!-- title -->
     <div class="flex items-center gap-2 mb-4">
@@ -18,12 +19,13 @@
     >
       <!-- SLIDES -->
       <div id="slider" class="relative h-[480px]">
-        <!-- Slide 1 -->
+        {% for post in featured_posts %}
         <div
           class="slide absolute inset-0 opacity-100 transition-opacity duration-700"
         >
           <img
-            src="/media/blog/featured.jpg"
+            src="{{ post.image.url }}"
+            alt="{{ post.title }}"
             loading="lazy"
             class="h-full w-full object-cover"
           />
@@ -38,15 +40,17 @@
             >
               <div class="max-w-xl">
                 <h1 class="text-4xl font-bold text-white mb-4">
-                  Building in Public: My Developer Journey
+                  {{ post.title }}
                 </h1>
 
                 <p class="text-slate-300 mb-6">
-                  A detailed look into my journey as a developer, lessons
-                  learned and projects I've built.
+                  {{ post.excerpt }}
                 </p>
 
-                <a class="px-5 py-3 bg-blue-600 rounded-xl text-white">
+                <a
+                  href="{% url 'blog_detail' post.slug %}"
+                  class="px-5 py-3 bg-blue-600 rounded-xl text-white inline-block"
+                >
                   Read Article →
                 </a>
               </div>
@@ -67,7 +71,7 @@
                       d="M8 7V3m8 4V3m-9 8h10m-13 9h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v11a2 2 0 002 2z"
                     />
                   </svg>
-                  <span>Jun 24, 2026</span>
+                  <span>{{ post.published_at|date:"M d, Y" }}</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <svg
@@ -84,85 +88,13 @@
                       d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <span>8 min read</span>
+                  <span>{{ post.read_time }} min read</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Slide 2 -->
-        <div
-          class="slide absolute inset-0 opacity-100 transition-opacity duration-700"
-        >
-          <img
-            src="/media/blog/featured-2.jpg"
-            loading="lazy"
-            class="h-full w-full object-cover"
-          />
-
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"
-          ></div>
-
-          <div class="absolute bottom-0 w-full p-10">
-            <div
-              class="grid md:grid-cols-[minmax(0,1.5fr)_auto] gap-8 items-end ml-4"
-            >
-              <div class="max-w-xl">
-                <h1 class="text-4xl font-bold text-white mb-4">
-                  Building in Public: My Developer Journey
-                </h1>
-
-                <p class="text-slate-300 mb-6">
-                  A detailed look into my journey as a developer, lessons
-                  learned and projects I've built.
-                </p>
-
-                <a class="px-5 py-3 bg-blue-600 rounded-xl text-white">
-                  Read Article →
-                </a>
-              </div>
-
-              <div class="text-slate-300 text-sm flex flex-col gap-2 mr-4">
-                <div class="flex items-center gap-2 mb-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                      d="M8 7V3m8 4V3m-9 8h10m-13 9h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v11a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <span>Jun 24, 2026</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span>8 min read</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <!-- DOTS -->
@@ -172,6 +104,7 @@
       ></div>
     </div>
   </div>
+  {% endif %}
 
   <!-- Main Grid -->
   <div class="grid lg:grid-cols-12 gap-8">
@@ -188,8 +121,7 @@
           <div class="w-2 h-2 rounded-full bg-blue-500"></div>
         </div>
 
-        <div class="relative">
-          <!-- icon -->
+        <form method="GET" action="{% url 'blog' %}" class="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2"
@@ -205,13 +137,14 @@
             />
           </svg>
 
-          <!-- input -->
           <input
             type="text"
+            name="q"
+            value="{{ current_query }}"
             placeholder="Search posts..."
             class="w-full bg-cardHover/50 border border-slate-700 rounded-lg pl-10 pr-4 py-3 text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-blue-500"
           />
-        </div>
+        </form>
       </div>
 
       <!-- Categories -->
@@ -226,16 +159,14 @@
         </div>
 
         <ul class="space-y-2">
-          <!-- All -->
           <li>
             <a
-              href="#"
-              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition"
+              href="{% url 'blog' %}"
+              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition {% if not current_category %}bg-activeEl text-white{% else %}text-slate-300{% endif %}"
             >
               <div
-                class="flex items-center gap-3 text-slate-300 group-hover:text-white"
+                class="flex items-center gap-3 group-hover:text-white"
               >
-                <!-- list icon (All) -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="w-5 h-5 text-white"
@@ -253,81 +184,20 @@
 
                 <span>All</span>
               </div>
-
-              <span class="text-blue-400 text-sm">10</span>
             </a>
           </li>
-
-          <!-- Django -->
+          {% for category in categories %}
           <li>
             <a
-              href="#"
-              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition"
+              href="{% url 'blog' %}?category={{ category.slug }}"
+              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition {% if current_category == category.slug %}bg-activeEl text-white{% else %}text-slate-300{% endif %}"
             >
               <div
-                class="flex items-center gap-3 text-slate-300 group-hover:text-white"
+                class="flex items-center gap-3 group-hover:text-white"
               >
-                <!-- Django icon (simple stylized D) -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  class="w-5 h-5 text-green-400"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M6 3v18h4.5c4.5 0 7.5-3 7.5-9s-3-9-7.5-9H6z" />
-                </svg>
-
-                <span>Django</span>
-              </div>
-
-              <span class="text-blue-400 text-sm">4</span>
-            </a>
-          </li>
-
-          <!-- Python -->
-          <li>
-            <a
-              href="#"
-              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition"
-            >
-              <div
-                class="flex items-center gap-3 text-slate-300 group-hover:text-white"
-              >
-                <!-- Python-like icon -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  class="w-5 h-5 text-yellow-400"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                >
-                  <path d="M12 2c-4 0-4 3-4 3v3h8V5s0-3-4-3z" />
-                  <path d="M12 22c4 0 4-3 4-3v-3H8v3s0 3 4 3z" />
-                </svg>
-
-                <span>Python</span>
-              </div>
-
-              <span class="text-blue-400 text-sm">3</span>
-            </a>
-          </li>
-
-          <!-- Web Dev -->
-          <li>
-            <a
-              href="#"
-              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition"
-            >
-              <div
-                class="flex items-center gap-3 text-slate-300 group-hover:text-white"
-              >
-                <!-- code icon -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-slate-300"
+                  class="w-5 h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -336,92 +206,17 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="1.5"
-                    d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                    d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
 
-                <span>Web Development</span>
+                <span>{{ category.name }}</span>
               </div>
 
-              <span class="text-blue-400 text-sm">2</span>
+              <span class="text-blue-400 text-sm">{{ category.posts.count }}</span>
             </a>
           </li>
-
-          <!-- Career -->
-          <li>
-            <a
-              href="#"
-              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition"
-            >
-              <div
-                class="flex items-center gap-3 text-slate-300 group-hover:text-white"
-              >
-                <!-- briefcase -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-slate-300"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M3 7h18v12H3V7z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M9 7V5h6v2"
-                  />
-                </svg>
-
-                <span>Career</span>
-              </div>
-
-              <span class="text-blue-400 text-sm">1</span>
-            </a>
-          </li>
-
-          <!-- Thoughts -->
-          <li>
-            <a
-              href="#"
-              class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-white transition"
-            >
-              <div
-                class="flex items-center gap-3 text-slate-300 group-hover:text-white"
-              >
-                <!-- brain / idea icon -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5 text-purple-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M9 3a3 3 0 013 3v12a3 3 0 01-6 0V6a3 3 0 013-3z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                    d="M15 3a3 3 0 013 3v12a3 3 0 01-6 0V6a3 3 0 013-3z"
-                  />
-                </svg>
-
-                <span>Thoughts</span>
-              </div>
-
-              <span class="text-blue-400 text-sm">1</span>
-            </a>
-          </li>
+          {% endfor %}
         </ul>
       </div>
 
@@ -437,35 +232,14 @@
         </div>
 
         <div class="flex flex-wrap gap-2">
-          <span
-            class="px-4 py-1.5 text-sm rounded-lg bg-activeEl border border-slate-800 text-slate-300 hover:bg-cardHover hover:text-white transition cursor-pointer"
+          {% for tag in tags %}
+          <a
+            href="{% url 'blog' %}?tag={{ tag.slug }}"
+            class="px-4 py-1.5 text-sm rounded-lg border transition {% if current_tag == tag.slug %}bg-blue-500/20 border-blue-500 text-blue-400{% else %}bg-activeEl border-slate-800 text-slate-300 hover:bg-cardHover hover:text-white{% endif %}"
           >
-            django
-          </span>
-
-          <span
-            class="px-4 py-1.5 text-sm rounded-lg bg-activeEl border border-slate-800 text-slate-300 hover:bg-cardHover hover:text-white transition cursor-pointer"
-          >
-            python
-          </span>
-
-          <span
-            class="px-4 py-1.5 text-sm rounded-lg bg-activeEl border border-slate-800 text-slate-300 hover:bg-cardHover hover:text-white transition cursor-pointer"
-          >
-            api
-          </span>
-
-          <span
-            class="px-4 py-1.5 text-sm rounded-lg bg-activeEl border border-slate-800 text-slate-300 hover:bg-cardHover hover:text-white transition cursor-pointer"
-          >
-            tailwind
-          </span>
-
-          <span
-            class="px-4 py-1.5 text-sm rounded-lg bg-activeEl border border-slate-800 text-slate-300 hover:bg-cardHover hover:text-white transition cursor-pointer"
-          >
-            postgresql
-          </span>
+            {{ tag.name }}
+          </a>
+          {% endfor %}
         </div>
       </div>
 
@@ -481,7 +255,7 @@
           <div class="w-2 h-2 rounded-full bg-blue-500"></div>
         </div>
 
-        <!-- SORT BY (custom dropdown) -->
+        <!-- SORT BY -->
         <div class="mb-6">
           <label
             class="text-slate-400 text-xs uppercase tracking-wider block mb-2"
@@ -490,12 +264,13 @@
           </label>
 
           <div class="relative">
-            <!-- trigger -->
             <button
               id="sortBtn"
               class="w-full flex items-center justify-between bg-cardHover/50 border border-slate-700 rounded-xl px-4 py-3 text-slate-300 text-sm hover:border-blue-500 transition"
             >
-              <span id="sortSelected">Latest</span>
+              <span id="sortSelected">
+                {% if current_sort == "oldest" %}Oldest{% elif current_sort == "popular" %}Most Popular{% else %}Latest{% endif %}
+              </span>
 
               <svg
                 class="w-4 h-4 text-slate-500"
@@ -513,34 +288,30 @@
               </svg>
             </button>
 
-            <!-- dropdown -->
             <div
               id="sortMenu"
               class="hidden absolute z-20 mt-2 w-full bg-cardHover border border-slate-800 rounded-md overflow-hidden shadow-lg"
             >
-              <button
+              <a
+                href="?sort=latest{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
                 class="sort-option w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-activeEl transition border-b border-slate-800"
               >
                 Latest
-              </button>
+              </a>
 
-              <button
+              <a
+                href="?sort=oldest{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
                 class="sort-option w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-activeEl transition border-b border-slate-800"
               >
                 Oldest
-              </button>
+              </a>
 
-              <button
-                class="sort-option w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-activeEl transition border-b border-slate-800"
-              >
-                Most Popular
-              </button>
-
-              <button
+              <a
+                href="?sort=popular{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
                 class="sort-option w-full text-left px-4 py-3 text-sm text-slate-300 hover:bg-activeEl transition"
               >
-                Most Read
-              </button>
+                Most Popular
+              </a>
             </div>
           </div>
         </div>
@@ -554,16 +325,17 @@
           </label>
 
           <div class="space-y-2">
-            <!-- checkbox component -->
-            <label class="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" class="peer hidden" />
-
+            <a
+              href="?{% if current_sort %}sort={{ current_sort }}&{% endif %}{% if current_category %}category={{ current_category }}&{% endif %}{% if current_tag %}tag={{ current_tag }}&{% endif %}{% if current_query %}q={{ current_query }}&{% endif %}"
+              class="flex items-center gap-3 cursor-pointer group"
+            >
               <div
-                class="w-4 h-4 rounded border border-slate-600 flex items-center justify-center group-hover:border-blue-500 transition peer-checked:bg-blue-500 peer-checked:border-blue-500"
+                class="w-4 h-4 rounded border flex items-center justify-center transition {% if not current_reading_time %}bg-blue-500 border-blue-500{% else %}border-slate-600 group-hover:border-blue-500{% endif %}"
               >
+                {% if not current_reading_time %}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition"
+                  class="w-3 h-3 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -575,24 +347,25 @@
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
+                {% endif %}
               </div>
 
-              <span
-                class="text-slate-300 group-hover:text-white transition text-sm"
-              >
+              <span class="text-slate-300 group-hover:text-white transition text-sm">
                 All
               </span>
-            </label>
+            </a>
 
-            <label class="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" class="peer hidden" />
-
+            <a
+              href="?reading_time=under-5{% if current_sort %}&sort={{ current_sort }}{% endif %}{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+              class="flex items-center gap-3 cursor-pointer group"
+            >
               <div
-                class="w-4 h-4 rounded border border-slate-600 flex items-center justify-center group-hover:border-blue-500 transition peer-checked:bg-blue-500 peer-checked:border-blue-500"
+                class="w-4 h-4 rounded border flex items-center justify-center transition {% if current_reading_time == "under-5" %}bg-blue-500 border-blue-500{% else %}border-slate-600 group-hover:border-blue-500{% endif %}"
               >
+                {% if current_reading_time == "under-5" %}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition"
+                  class="w-3 h-3 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -604,24 +377,25 @@
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
+                {% endif %}
               </div>
 
-              <span
-                class="text-slate-300 group-hover:text-white transition text-sm"
-              >
+              <span class="text-slate-300 group-hover:text-white transition text-sm">
                 Under 5 min
               </span>
-            </label>
+            </a>
 
-            <label class="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" class="peer hidden" />
-
+            <a
+              href="?reading_time=5-10{% if current_sort %}&sort={{ current_sort }}{% endif %}{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+              class="flex items-center gap-3 cursor-pointer group"
+            >
               <div
-                class="w-4 h-4 rounded border border-slate-600 flex items-center justify-center group-hover:border-blue-500 transition peer-checked:bg-blue-500 peer-checked:border-blue-500"
+                class="w-4 h-4 rounded border flex items-center justify-center transition {% if current_reading_time == "5-10" %}bg-blue-500 border-blue-500{% else %}border-slate-600 group-hover:border-blue-500{% endif %}"
               >
+                {% if current_reading_time == "5-10" %}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition"
+                  class="w-3 h-3 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -633,24 +407,25 @@
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
+                {% endif %}
               </div>
 
-              <span
-                class="text-slate-300 group-hover:text-white transition text-sm"
-              >
+              <span class="text-slate-300 group-hover:text-white transition text-sm">
                 5 - 10 min
               </span>
-            </label>
+            </a>
 
-            <label class="flex items-center gap-3 cursor-pointer group">
-              <input type="checkbox" class="peer hidden" />
-
+            <a
+              href="?reading_time=10-plus{% if current_sort %}&sort={{ current_sort }}{% endif %}{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+              class="flex items-center gap-3 cursor-pointer group"
+            >
               <div
-                class="w-4 h-4 rounded border border-slate-600 flex items-center justify-center group-hover:border-blue-500 transition peer-checked:bg-blue-500 peer-checked:border-blue-500"
+                class="w-4 h-4 rounded border flex items-center justify-center transition {% if current_reading_time == "10-plus" %}bg-blue-500 border-blue-500{% else %}border-slate-600 group-hover:border-blue-500{% endif %}"
               >
+                {% if current_reading_time == "10-plus" %}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition"
+                  class="w-3 h-3 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -662,14 +437,13 @@
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
+                {% endif %}
               </div>
 
-              <span
-                class="text-slate-300 group-hover:text-white transition text-sm"
-              >
+              <span class="text-slate-300 group-hover:text-white transition text-sm">
                 10+ min
               </span>
-            </label>
+            </a>
           </div>
         </div>
       </div>
@@ -677,100 +451,52 @@
 
     <!-- Posts -->
     <main class="lg:col-span-9">
-      <!-- Background  -->
       <div class="bg-surface border border-slate-800 rounded-lg p-6">
         <!-- title and list style -->
         <div class="flex items-center justify-between mb-6">
           <div class="flex items-center gap-2">
-            <h2 class="text-2xl font-bold">All Posts</h2>
-          </div>
-
-          <div class="flex overflow-hidden rounded-md border border-slate-800">
-            <!-- Grid (inactive) -->
-            <button
-              class="flex items-center gap-2 px-4 py-2 bg-background text-slate-400 hover:bg-activeEl/30 transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"
-                />
-              </svg>
-
-              <span class="text-sm"> Grid </span>
-            </button>
-
-            <!-- divider -->
-            <div class="w-px bg-slate-800"></div>
-
-            <!-- List (active) -->
-            <button
-              class="flex items-center gap-2 px-4 py-2 bg-activeEl text-foreground transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="#8AD0FF"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2.5"
-                  d="M8 6h12M8 12h12M8 18h12M3 6h.01M3 12h.01M3 18h.01"
-                />
-              </svg>
-
-              <span class="text-sm"> List </span>
-            </button>
+            <h2 class="text-2xl font-bold">
+              {% if current_query %}Results for "{{ current_query }}"{% elif current_category %}{{ current_category|title }}{% elif current_tag %}{{ current_tag|title }}{% else %}All Posts{% endif %}
+            </h2>
           </div>
         </div>
 
         <!-- Posts -->
         <div class="space-y-6">
-          <!-- Post Card -->
-          {% for i in "1234" %}
-
-          <article
-            class="group bg-surface hover:bg-background/30 hover:-translate-y-1 transition-all duration-300 border border-slate-800 rounded-lg"
+          {% for post in posts %}
+          <a
+            href="{% url 'blog_detail' post.slug %}"
+            class="block group bg-surface hover:bg-background/30 hover:-translate-y-1 transition-all duration-300 border border-slate-800 rounded-lg"
           >
             <div class="grid md:grid-cols-[280px_1fr] gap-6 p-5">
               <!-- Image -->
               <div class="aspect-[4/3] overflow-hidden rounded-md">
                 <img
-                  src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4"
+                  src="{{ post.image.url }}"
+                  alt="{{ post.title }}"
                   class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  alt=""
                 />
               </div>
 
               <!-- Content -->
               <div class="flex flex-col justify-between">
                 <div>
+                  {% if post.category %}
                   <span
                     class="inline-flex items-center px-2 py-0.5 rounded-md bg-blue-950/40 text-blue-300 text-xs font-medium"
                   >
-                    Django
+                    {{ post.category.name }}
                   </span>
+                  {% endif %}
 
                   <h3
                     class="text-xl font-semibold mt-3 mb-2 group-hover:text-blue-400 transition duration-500"
                   >
-                    Django Tips I Wish I Knew Earlier
+                    {{ post.title }}
                   </h3>
 
                   <p class="text-slate-400 leading-relaxed">
-                    A collection of Django tips and best practices that would
-                    have saved me hours of debugging and development time.
+                    {{ post.excerpt }}
                   </p>
                 </div>
 
@@ -794,7 +520,7 @@
                         />
                       </svg>
 
-                      <span>Jun 20, 2026</span>
+                      <span>{{ post.published_at|date:"M d, Y" }}</span>
                     </div>
 
                     <!-- Reading Time -->
@@ -814,76 +540,18 @@
                         />
                       </svg>
 
-                      <span>6 min read</span>
+                      <span>{{ post.read_time }} min read</span>
                     </div>
                   </div>
-
-                  <!-- bookmark -->
-                  <button class="text-slate-500 hover:text-blue-400 transition">
-                    <!-- <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 h-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor">
-                    
-                                            <path stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1.5"
-                                                d="M17 21l-5-3-5 3V5a2 2 0 012-2h6a2 2 0 012 2v16z"/>
-                                        </svg> -->
-
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      class="size-5"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-                      />
-                    </svg>
-                  </button>
                 </div>
               </div>
             </div>
-          </article>
-
+          </a>
+          {% empty %}
+          <div class="text-center py-16">
+            <p class="text-slate-400 text-lg">No posts found.</p>
+          </div>
           {% endfor %}
-        </div>
-
-        <!-- Pagination -->
-        <div class="flex justify-center gap-2 mt-10">
-          <button
-            class="bg-surface text-muted w-10 h-10 rounded-md border border-slate-700"
-          >
-            ‹
-          </button>
-
-          <button
-            class="bg-surface w-10 h-10 rounded-md border border-slate-700"
-          >
-            1
-          </button>
-
-          <button class="bg-blue-500 w-10 h-10 rounded-md bg-blue-600">
-            2
-          </button>
-
-          <button
-            class="bg-surface w-10 h-10 rounded-md border border-slate-700"
-          >
-            3
-          </button>
-
-          <button
-            class="bg-surface w-10 h-10 rounded-md border border-slate-700 hover:border-blue-500 transition"
-          >
-            ›
-          </button>
         </div>
       </div>
     </main>
@@ -897,19 +565,6 @@
         <div
           class="w-12 h-12 rounded-lg bg-blue-500 flex items-center justify-center shrink-0"
         >
-          <!-- <svg xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor">
-
-                        <path stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            d="M3 8l9 6 9-6m-18 0v8a2 2 0 002 2h14a2 2 0 002-2V8"/>
-
-                    </svg> -->
-
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -920,7 +575,6 @@
             stroke-width="1.75"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-mail-spark"
           >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path
