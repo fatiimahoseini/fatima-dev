@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Subscriber
 
 
 def blog(request):
@@ -77,3 +77,11 @@ def blog_detail(request, slug):
         "next_post": next_post,
     }
     return render(request, "blog/blog_detail.html", context)
+
+
+def newsletter_subscribe(request):
+    if request.method == "POST":
+        email = request.POST.get("email", "").strip()
+        if email:
+            Subscriber.objects.get_or_create(email=email)
+    return redirect("blog")

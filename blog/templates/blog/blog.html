@@ -1,7 +1,12 @@
 {% extends "base.html" %} {% load static %} {% load blog_filters %} {% block title %}Blog{% endblock %}
 {% block content %}
 
-<section class="max-w-7xl mx-auto px-4 py-7">
+<!-- Background Effects -->
+<div class="bg-grid bg-grid--subtle" data-bg="grid"></div>
+<canvas id="particleCanvas" class="fixed inset-0 z-0 pointer-events-none" data-fade-scroll="true" data-bg="particles"></canvas>
+<div class="bg-noise bg-noise--subtle" data-bg="noise"></div>
+
+<section class="relative z-10 max-w-7xl mx-auto px-4 py-7">
   <!-- Featured Post -->
   {% if featured_posts %}
   <div class="mb-10">
@@ -608,10 +613,15 @@
 
       <!-- Form -->
       <form
+        action="{% url 'newsletter_subscribe' %}"
+        method="POST"
         class="flex w-full lg:w-auto overflow-hidden rounded-md border border-slate-700"
       >
+        {% csrf_token %}
         <input
           type="email"
+          name="email"
+          required
           placeholder="Enter your email"
           class="min-w-[280px] bg-background/30 px-4 py-3 outline-none border-none flex-1"
         />
@@ -662,5 +672,8 @@
     100% { transform: translate(-50%, -150%) scale(1.2); opacity: 0; }
   }
 </style>
+
+<link rel="stylesheet" href="{% static 'blog/css/blog-bg-effects.css' %}">
+<script src="{% static 'blog/js/particles.js' %}"></script>
 
 {% endblock %}

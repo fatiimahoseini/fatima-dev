@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from django_ckeditor_5.widgets import CKEditor5Widget
-from .models import Category, Tag, Post
+from .models import Category, Tag, Post, Subscriber
 
 
 @admin.register(Category)
@@ -33,3 +33,8 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ["title", "excerpt", "content"]
     prepopulated_fields = {"slug": ("title",)}
     filter_horizontal = ["tags"]
+
+
+@admin.register(Subscriber)
+class SubscriberAdmin(admin.ModelAdmin):
+    list_display = ["email", "subscribed_at"]

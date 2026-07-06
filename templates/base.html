@@ -7,7 +7,7 @@
     <title>{% block title %}Portfolio{% endblock %}</title>
     <link id="favicon" rel="icon" type="image/png" />
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'blog/css/article.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,6 +53,9 @@
     <!-- Navbar -->
     {% include "components/header.html" %}
 
+    <!-- Floating Side Nav -->
+    {% include "components/floating-nav.html" %}
+
     <!-- Content -->
     <main class="flex-1 px-6 py-6 flex flex-col justify-center">
       {% block content %} {% endblock %}
@@ -60,6 +63,7 @@
 
     <!-- Footer -->
     {% include "components/footer.html" %}
+
+    <script src="{% static 'js/favicon.js' %}"></script>
   </body>
 </html>
-<script src="{% static 'js/favicon.js' %}"></script>

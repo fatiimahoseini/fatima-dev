@@ -3,37 +3,16 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-<style>
-    #starfield {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-    }
-</style>
 
-<!-- BACKGROUND LAYERS -->
-<div class="absolute inset-0 -z-10 overflow-hidden">
-
-    <!-- SPACE TINT -->
-    <div class="absolute inset-0
-        bg-[radial-gradient(circle_at_80%_20%,oklch(50%_0.134_242.749_/_0.06),transparent_35%)]">
-    </div>
-
-    <!-- GLOWS -->
-    <!-- <div class="absolute w-[600px] h-[600px]
-        right-[-200px] top-[-120px]
-        bg-sky-800/10 blur-[200px]">
-    </div> -->
-
-    <div class="absolute w-[500px] h-[500px]
-        left-[-150px] bottom-[-150px]
-        bg-sky-700/10 blur-[220px]">
-    </div>
-
+<!-- Background Effects -->
+<div class="bg-grid bg-grid--subtle" data-bg="grid"></div>
+<canvas id="particleCanvas" class="fixed inset-0 z-0 pointer-events-none"
+        data-density="16000" data-fade-scroll="true" data-focus="bottom-left"></canvas>
+<div class="bg-blobs" data-bg="blobs">
+    <div class="bg-blob bg-blob--1" style="opacity: 0.04;"></div>
+    <div class="bg-blob bg-blob--2" style="opacity: 0.03;"></div>
 </div>
-
-<canvas id="starfield"></canvas>
+<div class="bg-noise bg-noise--subtle" data-bg="noise"></div>
 
 <section class="max-w-5xl mx-auto relative z-10 flex flex-col justify-center">
 
@@ -57,7 +36,7 @@
         <!-- LEFT -->
         <div>
             <p class="mt-2 text-gray-300 text-lg leading-relaxed">
-                I’m open to interesting engineering work — freelance, advisory, or full-time roles focused on distributed systems, developer tools, and infrastructure-heavy products.<br><br>
+                I'm open to interesting engineering work — freelance, advisory, or full-time roles focused on distributed systems, developer tools, and infrastructure-heavy products.<br><br>
             </p>
 
             <div class="mt-4">
@@ -82,7 +61,6 @@
             hover:bg-activeEl rounded-md px-4 py-2">
 
                 <span class="flex items-center gap-2">
-                    <!-- icon -->
                     <svg class="w-5 h-5 text-sky-500 group-hover:text-sky-400 transition"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -164,5 +142,7 @@
     </div>
 
 </section>
-<script src="{% static 'starfield/script.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'blog/css/blog-bg-effects.css' %}">
+<script src="{% static 'blog/js/particles.js' %}"></script>
 {% endblock %}

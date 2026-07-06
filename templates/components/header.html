@@ -1,4 +1,4 @@
-<header class="border-b border-gray-200/50 dark:border-gray-800/50">
+<header class="border-b border-gray-800/50 relative z-50">
     <div class="max-w-7xl mx-auto px-6 py-2 lg:px-8">
         <div class="flex items-center justify-between h-16">
 
@@ -7,33 +7,30 @@
             Fatima.dev<span class="text-sky-500">_</span>
             </a>
 
-            <!-- Navigation -->
+            <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8">
                 <a href="{% url 'home' %}"
                 class="relative transition
                 {% if request.path == '/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
                  Home
-     
                  {% if request.path == '/' %}
                  <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
                  {% endif %}
                 </a>
-        
+
                 <a href="{% url 'blog' %}"
                     class="relative transition
                     {% if request.path == '/blog/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
                     Blog
-        
                     {% if request.path == '/blog/' %}
                     <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
                     {% endif %}
                 </a>
-        
+
                 <a href="{% url 'contact' %}"
                     class="relative transition
                     {% if request.path == '/contact/' %}text-sky-400{% else %}hover:text-sky-400{% endif %}">
                     Contact
-        
                     {% if request.path == '/contact/' %}
                     <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse"></span>
                     {% endif %}
@@ -45,9 +42,10 @@
 
                 <!-- GitHub -->
                 <a
-                    href="https://github.com/yourusername"
+                    href="https://github.com/fatiimahoseini"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    class="p-2 rounded-xl hover:bg-gray-800 transition"
                     aria-label="GitHub"
                 >
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -55,16 +53,29 @@
                     </svg>
                 </a>
 
-                <!-- Dark Mode -->
+                <!-- Light Mode Toggle (sun icon — site is dark) -->
                 <button
                     id="theme-toggle"
-                    class="p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    class="p-2 rounded-xl hover:bg-gray-800 transition"
                     aria-label="Toggle Theme"
                 >
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M20.354 15.354A9 9 0 018.646 3.646
-                              9.003 9.003 0 0012 21a9 9 0 008.354-5.646z"/>
+                              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </button>
+
+                <!-- Mobile Hamburger -->
+                <button
+                    id="mobile-menu-btn"
+                    class="md:hidden p-2 rounded-xl hover:bg-gray-800 transition"
+                    aria-label="Menu"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"/>
+                        <path id="close-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12" class="hidden"/>
                     </svg>
                 </button>
 
@@ -72,4 +83,39 @@
 
         </div>
     </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-800/50">
+        <div class="px-6 py-4 space-y-3">
+            <a href="{% url 'home' %}"
+               class="block py-2 transition {% if request.path == '/' %}text-sky-400{% else %}text-gray-300 hover:text-sky-400{% endif %}">
+                Home
+            </a>
+            <a href="{% url 'blog' %}"
+               class="block py-2 transition {% if request.path == '/blog/' %}text-sky-400{% else %}text-gray-300 hover:text-sky-400{% endif %}">
+                Blog
+            </a>
+            <a href="{% url 'contact' %}"
+               class="block py-2 transition {% if request.path == '/contact/' %}text-sky-400{% else %}text-gray-300 hover:text-sky-400{% endif %}">
+                Contact
+            </a>
+        </div>
+    </div>
 </header>
+
+<script>
+(function() {
+    const btn = document.getElementById("mobile-menu-btn");
+    const menu = document.getElementById("mobile-menu");
+    const hamburger = document.getElementById("hamburger-icon");
+    const close = document.getElementById("close-icon");
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+        const open = !menu.classList.contains("hidden");
+        menu.classList.toggle("hidden");
+        hamburger.classList.toggle("hidden");
+        close.classList.toggle("hidden");
+    });
+})();
+</script>

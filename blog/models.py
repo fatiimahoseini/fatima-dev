@@ -127,3 +127,14 @@ class Post(models.Model):
 
     def get_next_post(self):
         return Post.objects.filter(published_at__gt=self.published_at).last()
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-subscribed_at"]
+
+    def __str__(self):
+        return self.email
