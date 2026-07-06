@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}fatima.dev{% endblock %}
 
@@ -50,7 +51,7 @@
     <!-- Description -->
     <p class="mt-5 text-gray-300 text-lg">
         Backend Developer focused on building reliable APIs, data pipelines, and developer tools.<br>
-Interested in clean system design, maintainable abstractions, and the intersection of backend engineering with applied AI systems.
+        Interested in clean system design, maintainable abstractions, and the intersection of backend engineering with applied AI systems.
     </p>
 
     <!-- Buttons -->
@@ -631,166 +632,100 @@ Interested in clean system design, maintainable abstractions, and the intersecti
         </p>
     </div>
 
-    <!-- GRID -->
-    <div class="mt-12 grid md:grid-cols-3 gap-6">
+    {% if blog_posts %}
+    <!-- SLIDER -->
+    <div class="mt-12 relative">
 
-        <!-- CARD 1 -->
-        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden
-                    transition-all duration-300 ease-out
-                    hover:-translate-y-2 hover:scale-[1.02]
-                    hover:border-gray-700
-                    hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
+        <!-- TRACK -->
+        <div id="blogSlider" class="overflow-hidden">
+            <div id="blogTrack" class="flex gap-6 transition-transform duration-500 ease-in-out">
+                {% for post in blog_posts %}
+                <a href="{% url 'blog_detail' post.slug %}"
+                   class="blog-slide group bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden
+                          transition-all duration-300 ease-out flex-shrink-0 w-full md:w-[calc(33.333%-16px)]
+                          hover:border-gray-700
+                          hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
 
-            <div class="h-40 overflow-hidden bg-gray-800">
-                <img src="/media/blog/3.jpg"
-                     class="w-full h-full object-cover
-                            transition duration-500
-                            group-hover:scale-110">
-            </div>
-
-            <div class="p-5">
-
-                <h3 class="text-white font-semibold text-lg">
-                    API Gateway
-                </h3>
-
-                <p class="mt-2 text-sm text-gray-300">
-                    High-performance gateway built with Go and rate limiting support.
-                </p>
-
-                <!-- META -->
-                <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-400">
-
-                    <!-- DATE -->
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             class="w-3.5 h-3.5 text-gray-500"
-                             fill="none"
-                             viewBox="0 0 24 24"
-                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span>Jan 2026</span>
+                    <div class="h-40 overflow-hidden bg-gray-800">
+                        <img src="{{ post.image.url }}"
+                             alt="{{ post.title }}"
+                             class="w-full h-full object-cover
+                                    transition duration-500
+                                    group-hover:scale-110">
                     </div>
 
-                    <!-- READ TIME -->
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             class="w-3.5 h-3.5 text-gray-500"
-                             fill="none"
-                             viewBox="0 0 24 24"
-                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span>6 min read</span>
+                    <div class="p-5">
+
+                        <h3 class="text-white font-semibold text-lg group-hover:text-sky-300 transition">
+                            {{ post.title }}
+                        </h3>
+
+                        <p class="mt-2 text-sm text-gray-300 line-clamp-2">
+                            {{ post.excerpt }}
+                        </p>
+
+                        <!-- META -->
+                        <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-400">
+
+                            <!-- DATE -->
+                            <div class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="w-3.5 h-3.5 text-gray-500"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                <span>{{ post.published_at|date:"M Y" }}</span>
+                            </div>
+
+                            <!-- READ TIME -->
+                            <div class="flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="w-3.5 h-3.5 text-gray-500"
+                                     fill="none"
+                                     viewBox="0 0 24 24"
+                                     stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>{{ post.read_time }} min read</span>
+                            </div>
+
+                        </div>
+
                     </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden
-                    transition-all duration-300 ease-out
-                    hover:-translate-y-2 hover:scale-[1.02]
-                    hover:border-gray-700
-                    hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
-
-            <div class="h-40 overflow-hidden bg-gray-800">
-                <img src="/media/blog/1.jpg"
-                     class="w-full h-full object-cover
-                            transition duration-500
-                            group-hover:scale-110">
-            </div>
-
-            <div class="p-5">
-
-                <h3 class="text-white font-semibold text-lg">
-                    DB Monitor
-                </h3>
-
-                <p class="mt-2 text-sm text-gray-300">
-                    Tool for tracking database performance and slow queries.
-                </p>
-
-                <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-400">
-
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
-                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span>Feb 2026</span>
-                    </div>
-
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
-                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span>8 min read</span>
-                    </div>
-
-                </div>
-
+                </a>
+                {% endfor %}
             </div>
         </div>
 
-        <!-- CARD 3 -->
-        <div class="group bg-gray-900/60 border border-gray-800 rounded-xl overflow-hidden
-                    transition-all duration-300 ease-out
-                    hover:-translate-y-2 hover:scale-[1.02]
-                    hover:border-gray-700
-                    hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
+        <!-- CONTROLS -->
+        {% if blog_posts|length > 3 %}
+        <div class="flex items-center justify-center gap-3 mt-8">
+            <button id="blogPrev"
+                    class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700
+                           text-gray-400 hover:border-sky-500 hover:text-sky-400 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+                </svg>
+            </button>
 
-            <div class="h-40 overflow-hidden bg-gray-800">
-                <img src="/media/blog/2.jpg"
-                     class="w-full h-full object-cover
-                            transition duration-500
-                            group-hover:scale-110">
-            </div>
+            <div id="blogDots" class="flex gap-2"></div>
 
-            <div class="p-5">
-
-                <h3 class="text-white font-semibold text-lg">
-                    Auth System
-                </h3>
-
-                <p class="mt-2 text-sm text-gray-300">
-                    Secure authentication service with JWT and refresh tokens.
-                </p>
-
-                <div class="mt-4 flex items-center justify-between text-xs font-mono text-gray-400">
-
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
-                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span>Dec 2025</span>
-                    </div>
-
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 text-gray-500"
-                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span>5 min read</span>
-                    </div>
-
-                </div>
-
-            </div>
+            <button id="blogNext"
+                    class="w-10 h-10 flex items-center justify-center rounded-lg border border-gray-700
+                           text-gray-400 hover:border-sky-500 hover:text-sky-400 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                </svg>
+            </button>
         </div>
+        {% endif %}
 
     </div>
+    {% endif %}
 
 </section>
 
@@ -840,5 +775,59 @@ Interested in clean system design, maintainable abstractions, and the intersecti
     </div>
 </section>
 
+<script>
+(function() {
+    const track = document.getElementById("blogTrack");
+    const prevBtn = document.getElementById("blogPrev");
+    const nextBtn = document.getElementById("blogNext");
+    const dotsContainer = document.getElementById("blogDots");
+    if (!track) return;
+
+    const slides = track.querySelectorAll(".blog-slide");
+    const total = slides.length;
+    let perView = window.innerWidth < 768 ? 1 : 3;
+    let page = 0;
+    const totalPages = Math.ceil(total / perView);
+
+    // Build dots
+    if (dotsContainer) {
+        for (let i = 0; i < totalPages; i++) {
+            const dot = document.createElement("button");
+            dot.className = "w-2 h-2 rounded-full transition " + (i === 0 ? "bg-sky-400" : "bg-gray-600");
+            dot.addEventListener("click", () => goTo(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function update() {
+        const gap = 24;
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        const offset = page * (slideWidth + gap) * perView;
+        track.style.transform = "translateX(-" + offset + "px)";
+        if (dotsContainer) {
+            dotsContainer.querySelectorAll("button").forEach((d, i) => {
+                d.className = "w-2 h-2 rounded-full transition " + (i === page ? "bg-sky-400" : "bg-gray-600");
+            });
+        }
+        if (prevBtn) prevBtn.style.opacity = page === 0 ? "0.3" : "1";
+        if (nextBtn) nextBtn.style.opacity = page >= totalPages - 1 ? "0.3" : "1";
+    }
+
+    function goTo(p) {
+        page = Math.max(0, Math.min(p, totalPages - 1));
+        update();
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", () => goTo(page - 1));
+    if (nextBtn) nextBtn.addEventListener("click", () => goTo(page + 1));
+
+    window.addEventListener("resize", () => {
+        perView = window.innerWidth < 768 ? 1 : 3;
+        goTo(0);
+    });
+
+    update();
+})();
+</script>
 
 {% endblock %}
