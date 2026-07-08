@@ -1,5 +1,7 @@
 asgiref==3.11.1
+cloudinary==1.45.0
 Django==6.0.6
+django-cloudinary-storage==0.3.0
 django-ckeditor-5==0.2.10
 gunicorn==23.0.0
 markdown-it-py==4.2.0
