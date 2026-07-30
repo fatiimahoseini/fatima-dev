@@ -69,3 +69,9 @@ Thumbs.db
 # =========================
 # */migrations/*.py
 # !*/migrations/__init__.py
+
+
+# =========================
+.mimocode/
+.cursor/
+.codebase-memory/
