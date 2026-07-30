@@ -2,6 +2,8 @@
 {% load static %}
 {% block title %}Contact{% endblock %}
 
+{% block main_class %}justify-center{% endblock %}
+
 {% block content %}
 
 <!-- Background Effects -->
@@ -9,17 +11,17 @@
 <canvas id="particleCanvas" class="fixed inset-0 z-0 pointer-events-none"
         data-density="16000" data-fade-scroll="true" data-focus="bottom-left"></canvas>
 <div class="bg-blobs" data-bg="blobs">
-    <div class="bg-blob bg-blob--1" style="opacity: 0.04;"></div>
-    <div class="bg-blob bg-blob--2" style="opacity: 0.03;"></div>
+    <div class="bg-blob bg-blob--1 opacity-[0.04]"></div>
+    <div class="bg-blob bg-blob--2 opacity-[0.03]"></div>
 </div>
 <div class="bg-noise bg-noise--subtle" data-bg="noise"></div>
 
-<section class="max-w-5xl mx-auto relative z-10 flex flex-col justify-center">
+<section class="max-w-5xl mx-auto w-full relative z-10">
 
     <!-- HEADER -->
     <div class="mb-10 relative">
         <p class="text-sky-500 font-mono">$ contact --open</p>
-        <h1 class="text-4xl font-semibold mt-2 relative inline-block">
+        <h1 class="text-3xl sm:text-4xl font-semibold mt-2 relative inline-block">
             Contact
         </h1>
     </div>
@@ -30,19 +32,19 @@
         <!-- dashed divider (center line) -->
         <div class="hidden md:block absolute top-0 h-full w-px
             left-[55%]
-            bg-gradient-to-b from-transparent via-gray-700/40 to-transparent
-            border-l border-dashed border-gray-700/30"></div>
+            bg-gradient-to-b from-transparent via-border to-transparent
+            border-l border-dashed border-border"></div>
 
         <!-- LEFT -->
         <div>
-            <p class="mt-2 text-gray-300 text-lg leading-relaxed">
+            <p class="mt-2 text-secondary text-base sm:text-lg leading-relaxed">
                 I'm open to interesting engineering work — freelance, advisory, or full-time roles focused on distributed systems, developer tools, and infrastructure-heavy products.<br><br>
             </p>
 
             <div class="mt-4">
                 <a href="mailto:fatiimahoseini@gmail.com"
                 class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg
-                        bg-slate-900 text-sky-400 border border-sky-500/20
+                        bg-surface text-sky-400 border border-sky-500/20
                         hover:-translate-y-1 hover:bg-activeEl
                         hover:border-sky-400/40
                         transition-all duration-300">
@@ -57,11 +59,11 @@
 
             <!-- GitHub -->
             <a href="https://github.com/fatiimahoseini"
-            class="flex items-center justify-between text-gray-400 hover:text-white transition group
+            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4 text-muted hover:text-foreground transition group
             hover:bg-activeEl rounded-md px-4 py-2">
 
                 <span class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sky-500 group-hover:text-sky-400 transition"
+                    <svg class="w-5 h-5 shrink-0 text-sky-500 group-hover:text-sky-400 transition"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                               d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482
@@ -80,21 +82,21 @@
                     GitHub
                 </span>
 
-                <span class="text-gray-600">
+                <span class="text-muted break-all sm:break-normal">
                     @fatiimahoseini
                     <span class="text-sky-500 text-lg">↩</span>
                 </span>
             </a>
 
-            <div class="h-px bg-gray-800/60"></div>
+            <div class="h-px bg-border"></div>
 
             <!-- LinkedIn -->
             <a href="https://www.linkedin.com/in/fatiimahoseini/"
-            class="flex items-center justify-between text-gray-400 hover:text-white transition group
+            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4 text-muted hover:text-foreground transition group
                     hover:bg-activeEl rounded-md px-4 py-2">
 
                 <span class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sky-500 group-hover:text-sky-400 transition"
+                    <svg class="w-5 h-5 shrink-0 text-sky-500 group-hover:text-sky-400 transition"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                               d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
@@ -106,33 +108,31 @@
                     LinkedIn
                 </span>
 
-                <span class="text-gray-600">
+                <span class="text-muted break-all sm:break-normal">
                     /in/fatiimahoseini
                     <span class="text-sky-500 text-lg">↩</span>
                 </span>
             </a>
 
-            <div class="h-px bg-gray-800/60"></div>
+            <div class="h-px bg-border"></div>
 
-            <!-- Phone -->
-            <a href="tel:00989383703205"
-            class="flex items-center justify-between text-gray-400 hover:text-white transition group
+            <!-- Telegram -->
+            <a href="https://t.me/fatiimahoseini" target="_blank" rel="noopener noreferrer"
+            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4 text-muted hover:text-foreground transition group
             hover:bg-activeEl rounded-md px-4 py-2">
 
                 <span class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-sky-500 group-hover:text-sky-400 transition"
+                    <svg class="w-5 h-5 shrink-0 text-sky-500 group-hover:text-sky-400 transition"
                          fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                              d="M3 5a2 2 0 012-2h2.28a1 1 0 01.948.684l1.518 4.554a1 1 0 01-.272 1.06L7.21 10.79
-                              a16.001 16.001 0 006.59 6.59l1.492-1.492a1 1 0 011.06-.272l4.554 1.518A1 1 0 0121 17.72V20a2 2 0 01-2 2h-1
-                              C9.163 22 2 14.837 2 6V5z"/>
+                              d="M21.5 3.5 2.7 10.6a.8.8 0 0 0 .04 1.52l4.8 1.53a1.6 1.6 0 0 0 1.56-.28l8.88-6.74-6.82 8.36a1.6 1.6 0 0 0-.36 1.08l.18 3.54a.8.8 0 0 0 1.36.5l2.63-2.66a1.6 1.6 0 0 1 1.63-.4l3.64 1.17a.8.8 0 0 0 1.02-.54L23 4.5a.8.8 0 0 0-1.5-1z"/>
                     </svg>
 
-                    Phone
+                    Telegram
                 </span>
 
-                <span class="text-gray-600">
-                    +98 938 370 3205
+                <span class="text-muted">
+                    @fatiimahoseini
                     <span class="text-sky-500 text-lg">↩</span>
                 </span>
             </a>
@@ -143,6 +143,8 @@
 
 </section>
 
-<link rel="stylesheet" href="{% static 'blog/css/blog-bg-effects.css' %}">
+{% endblock %}
+
+{% block extra_js %}
 <script src="{% static 'blog/js/particles.js' %}"></script>
 {% endblock %}

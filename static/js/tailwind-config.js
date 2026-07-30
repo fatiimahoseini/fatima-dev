@@ -1,27 +1,28 @@
-window.tailwind = window.tailwind || {};
-
-window.tailwind.config = {
-    theme: {
-        extend: {
-            colors: {
-                background: '#030A10',
-                surface: '#060F17',
-                activeEl: '#081529',
-
-                cardHover: '#0E1823',
-
-                primary: '#2F67D3',
-                primaryDark: '#0E2353',
-                light: '#8AD0FF',
-
-                foreground: '#FFFEFC',
-                muted: '#758293',
-            },
-
-            fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                mono: ['JetBrains Mono', 'monospace'],
-            },
-        },
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--color-background)",
+        surface: "var(--color-surface)",
+        activeEl: "var(--color-activeEl)",
+        cardHover: "var(--color-cardHover)",
+        primary: "var(--color-primary)",
+        primaryDark: "var(--color-primaryDark)",
+        light: "var(--color-light)",
+        foreground: "var(--color-foreground)",
+        muted: "var(--color-muted)",
+        secondary: "var(--color-secondary)",
+        border: "var(--color-border)",
+        card: "var(--color-card)",
+        fade: "var(--color-fade)",
+        nav: "var(--color-nav)",
+        "nav-border": "var(--color-nav-border)",
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+      },
     },
+  },
 };

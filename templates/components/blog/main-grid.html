@@ -1,0 +1,413 @@
+{% load blog_filters %}
+<div class="grid lg:grid-cols-12 gap-8">
+  <aside class="lg:col-span-3 space-y-4">
+    <div class="bg-surface border border-border rounded-lg p-5">
+      <div class="flex items-center gap-2 mb-4">
+        <h3
+          class="text-blue-400 text-sm font-semibold uppercase tracking-wider"
+        >
+          Search
+        </h3>
+        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+      </div>
+      <form method="GET" action="{% url 'blog' %}" class="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 text-muted absolute left-3 top-1/2 -translate-y-1/2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="m21 21-4.3-4.3m1.3-5.2a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+          />
+        </svg>
+        <input
+          type="text"
+          name="q"
+          value="{{ current_query }}"
+          placeholder="Search posts..."
+          class="w-full bg-transparent border border-border rounded-lg pl-10 pr-4 py-3 text-secondary placeholder:text-muted focus:outline-none focus:border-blue-500"
+        />
+      </form>
+    </div>
+
+    <div class="bg-surface border border-border rounded-lg p-5">
+      <div class="flex items-center gap-2 mb-6">
+        <h3
+          class="text-blue-400 text-sm font-semibold uppercase tracking-wider"
+        >
+          Categories
+        </h3>
+        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+      </div>
+      <ul class="space-y-2">
+        <li>
+          <a
+            href="{% url 'blog' %}"
+            class="group flex items-center justify-between px-4 py-2 rounded-md hover:bg-activeEl hover:text-foreground transition {% if not current_category %}bg-activeEl text-foreground{% else %}text-secondary{% endif %}"
+          >
+            <div class="flex items-center gap-3 group-hover:text-foreground">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-foreground"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <span>All</span>
+            </div>
+          </a>
+        </li>
+        {% for category in categories %}
+        <li>
+          <a
+            href="{% url 'blog' %}?category={{ category.slug }}"
+            class="group flex items-center gap-3 px-4 py-2 rounded-md hover:bg-activeEl hover:text-foreground transition {% if current_category == category.slug %}bg-activeEl text-foreground{% else %}text-secondary{% endif %}"
+          >
+            <div class="flex items-center gap-3 group-hover:text-foreground">
+              {{ category|category_icon }}
+              <span>{{ category.name }}</span>
+            </div>
+            <span class="text-blue-400 text-sm hidden md:inline">
+              {{ category.posts.count }}
+            </span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="bg-surface border border-border rounded-lg p-5 hidden md:block">
+      <div class="flex items-center gap-2 mb-6">
+        <h3
+          class="text-blue-400 text-sm font-semibold uppercase tracking-wider"
+        >
+          Tags
+        </h3>
+        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {% for tag in tags %}
+        <a
+          href="{% url 'blog' %}?tag={{ tag.slug }}"
+          class="px-4 py-1.5 text-sm rounded-lg border transition {% if current_tag == tag.slug %}bg-blue-500/20 border-blue-500 text-blue-400{% else %}bg-activeEl border-border text-secondary hover:bg-cardHover hover:text-foreground{% endif %}"
+        >
+          {{ tag.name }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="bg-surface border border-border rounded-lg p-5 hidden md:block">
+      <div class="flex items-center gap-2 mb-6">
+        <h3
+          class="text-blue-400 text-sm font-semibold uppercase tracking-wider"
+        >
+          Filters
+        </h3>
+        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+      </div>
+
+      <div class="mb-6">
+        <label class="text-muted text-xs uppercase tracking-wider block mb-2">
+          Sort By
+        </label>
+        <div class="relative">
+          <button
+            id="sortBtn"
+            class="w-full flex items-center justify-between bg-cardHover/50 border border-border rounded-xl px-4 py-3 text-secondary text-sm hover:border-blue-500 transition"
+          >
+            <span id="sortSelected">
+              {% if current_sort == "oldest" %}Oldest{% elif current_sort ==
+              "popular" %}Most Popular{% else %}Latest{% endif %}
+            </span>
+            <svg
+              class="w-4 h-4 text-muted"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+          <div
+            id="sortMenu"
+            class="hidden absolute z-20 mt-2 w-full bg-cardHover border border-border rounded-md overflow-hidden shadow-lg"
+          >
+            <a
+              href="?sort=latest{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+              class="sort-option block w-full text-left px-4 py-3 text-sm text-secondary hover:bg-activeEl transition border-b border-border"
+              >Latest</a
+            >
+            <a
+              href="?sort=oldest{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+              class="sort-option block w-full text-left px-4 py-3 text-sm text-secondary hover:bg-activeEl transition border-b border-border"
+              >Oldest</a
+            >
+            <a
+              href="?sort=popular{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+              class="sort-option block w-full text-left px-4 py-3 text-sm text-secondary hover:bg-activeEl transition"
+              >Most Popular</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="text-muted text-xs uppercase tracking-wider block mb-3">
+          Reading Time
+        </label>
+        <div class="space-y-2">
+          <a
+            href="?{% if current_sort %}sort={{ current_sort }}&{% endif %}{% if current_category %}category={{ current_category }}&{% endif %}{% if current_tag %}tag={{ current_tag }}&{% endif %}{% if current_query %}q={{ current_query }}&{% endif %}"
+            class="flex items-center gap-3 cursor-pointer group"
+          >
+            <div
+              class="w-4 h-4 rounded border flex items-center justify-center transition {% if not current_reading_time %}bg-blue-500 border-blue-500{% else %}border-border group-hover:border-blue-500{% endif %}"
+            >
+              {% if not current_reading_time %}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-3 h-3 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              {% endif %}
+            </div>
+            <span
+              class="text-secondary group-hover:text-foreground transition text-sm"
+              >All</span
+            >
+          </a>
+          <a
+            href="?reading_time=under-5{% if current_sort %}&sort={{ current_sort }}{% endif %}{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+            class="flex items-center gap-3 cursor-pointer group"
+          >
+            <div
+              class="w-4 h-4 rounded border flex items-center justify-center transition {% if current_reading_time == 'under-5' %}bg-blue-500 border-blue-500{% else %}border-border group-hover:border-blue-500{% endif %}"
+            >
+              {% if current_reading_time == "under-5" %}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-3 h-3 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              {% endif %}
+            </div>
+            <span
+              class="text-secondary group-hover:text-foreground transition text-sm"
+              >Under 5 min</span
+            >
+          </a>
+          <a
+            href="?reading_time=5-10{% if current_sort %}&sort={{ current_sort }}{% endif %}{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+            class="flex items-center gap-3 cursor-pointer group"
+          >
+            <div
+              class="w-4 h-4 rounded border flex items-center justify-center transition {% if current_reading_time == '5-10' %}bg-blue-500 border-blue-500{% else %}border-border group-hover:border-blue-500{% endif %}"
+            >
+              {% if current_reading_time == "5-10" %}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-3 h-3 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              {% endif %}
+            </div>
+            <span
+              class="text-secondary group-hover:text-foreground transition text-sm"
+              >5 - 10 min</span
+            >
+          </a>
+          <a
+            href="?reading_time=10-plus{% if current_sort %}&sort={{ current_sort }}{% endif %}{% if current_category %}&category={{ current_category }}{% endif %}{% if current_tag %}&tag={{ current_tag }}{% endif %}{% if current_query %}&q={{ current_query }}{% endif %}"
+            class="flex items-center gap-3 cursor-pointer group"
+          >
+            <div
+              class="w-4 h-4 rounded border flex items-center justify-center transition {% if current_reading_time == '10-plus' %}bg-blue-500 border-blue-500{% else %}border-border group-hover:border-blue-500{% endif %}"
+            >
+              {% if current_reading_time == "10-plus" %}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-3 h-3 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+              {% endif %}
+            </div>
+            <span
+              class="text-secondary group-hover:text-foreground transition text-sm"
+              >10+ min</span
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="lg:col-span-9">
+    <div class="bg-surface border border-border rounded-lg p-6">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2">
+          <h2 class="text-2xl font-bold">
+            {% if current_query %}Results for "{{ current_query }}"{% elif
+            current_category %}{{ current_category|title }}{% elif current_tag
+            %}{{ current_tag|title }}{% else %}All Posts{% endif %}
+          </h2>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        {% for post in posts %}
+        <a
+          href="{% url 'blog_detail' post.slug %}"
+          class="block group bg-surface hover:bg-background/30 hover:-translate-y-1 transition-all duration-300 border border-border rounded-lg"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 p-5">
+            <div class="w-full h-48 sm:h-60 overflow-hidden rounded-md">
+              <img
+                src="{{ post.image.url }}"
+                alt="{{ post.title }}"
+                class="w-full h-full object-cover object-center transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="flex flex-col justify-between">
+              <div>
+                {% if post.category %}
+                <span
+                  class="inline-flex items-center px-2 py-0.5 rounded-md bg-white dark:bg-blue-950/40 text-blue-500 dark:text-blue-300 text-xs font-medium border border-blue-200 dark:border-transparent"
+                >
+                  {{ post.category.name }}
+                </span>
+                {% endif %}
+                <h3
+                  class="text-xl font-semibold mt-3 mb-2 group-hover:text-blue-400 transition duration-500"
+                >
+                  {{ post.title }}
+                </h3>
+                <p class="text-muted leading-relaxed line-clamp-3">
+                  {{ post.excerpt }}
+                </p>
+              </div>
+              <div
+                class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-6"
+              >
+                <div class="flex flex-wrap gap-4 sm:gap-6 text-sm text-muted">
+                  <div class="flex items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span>{{ post.published_at|date:"M d, Y" }}</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span>{{ post.read_time }} min read</span>
+                  </div>
+                </div>
+                <button
+                  class="like-btn relative text-muted hover:text-pink-400 transition"
+                  data-liked="false"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% empty %}
+        <div class="text-center py-16">
+          <p class="text-muted text-lg">No posts found.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+</div>

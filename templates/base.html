@@ -1,14 +1,31 @@
 {% load static %}
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("theme");
+          if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+          } else {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Portfolio{% endblock %}</title>
     <link id="favicon" rel="icon" type="image/png" />
 
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'blog/css/article.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/blog-bg-effects.css' %}" />
+    {% block extra_css %}{% endblock %}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,53 +34,25 @@
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              background: "#010813",
-              // background: '#030A10',
-              surface: "#020B18",
-              // surface: "#060F17",
-              activeEl: "#061631",
-              // activeEl: "#081529",
-              cardHover: "#051125",
-              // cardHover: "#0E1823",
-              primary: "#2F67D3",
-              primaryDark: "#0E2353",
-              light: "#8AD0FF",
-              foreground: "#FFFEFC",
-              muted: "#758293",
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              mono: ["JetBrains Mono", "monospace"],
-            },
-          },
-        },
-      };
-    </script>
+    <script src="{% static 'js/tailwind-config.js' %}"></script>
   </head>
 
   <body
-    class="bg-background text-white font-sans antialiased min-h-screen flex flex-col"
+    class="bg-background text-foreground font-sans antialiased min-h-screen flex flex-col overflow-x-hidden lg:overflow-x-clip transition-colors duration-200"
   >
-    <!-- Navbar -->
     {% include "components/header.html" %}
+    {% include "components/bottom-nav.html" %}
 
-    <!-- Floating Side Nav -->
-    {% include "components/floating-nav.html" %}
-
-    <!-- Content -->
-    <main class="flex-1 px-6 py-6 flex flex-col justify-center">
-      {% block content %} {% endblock %}
+    <main
+      class="flex-1 min-w-0 overflow-x-hidden lg:overflow-x-clip px-4 sm:px-6 pt-6 pb-24 md:pb-6 flex flex-col {% block main_class %}{% endblock %}"
+    >
+      {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
     {% include "components/footer.html" %}
 
     <script src="{% static 'js/favicon.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+    {% block extra_js %}{% endblock %}
   </body>
 </html>

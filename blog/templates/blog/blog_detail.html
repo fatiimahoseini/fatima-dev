@@ -1,45 +1,52 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %}{{ post.title }}{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}{{ post.title }}
+{%endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/article.css' %}" />
+{% endblock %} {% block content %}
 
 <!-- Background Effects — minimal for reading focus -->
-<canvas id="particleCanvas" class="fixed inset-0 z-0 pointer-events-none"
-        data-density="25000" data-fade-scroll="true" data-zone=".article-content"></canvas>
+<canvas
+  id="particleCanvas"
+  class="fixed inset-0 z-0 pointer-events-none"
+  data-density="25000"
+  data-fade-scroll="true"
+  data-zone=".article-content"
+></canvas>
 
-<section class="relative z-10 max-w-7xl mx-auto px-4 py-10">
+<section
+  class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 min-w-0 overflow-x-hidden lg:overflow-x-visible"
+>
   <!-- Back -->
   <a
     href="{% url 'blog' %}"
-    class="inline-flex items-center gap-2 text-md text-slate-400 hover:text-white transition mb-8"
+    class="inline-flex items-center gap-2 text-md text-muted hover:text-foreground transition mb-8"
   >
     <span class="text-sky-500">&larr;</span> Back to Blog
   </a>
 
   <!-- Hero -->
-  <div
-    class="relative overflow-hidden rounded-2xl border border-slate-800 mb-10"
-  >
+  <div class="relative overflow-hidden rounded-2xl border border-border mb-10">
     <img
       src="{{ post.image.url }}"
       alt="{{ post.title }}"
-      class="w-full aspect-[32/9] object-cover"
+      class="w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[32/9] object-cover"
     />
   </div>
 
   <!-- Title -->
   <header class="mb-1">
-    <h1 class="text-5xl font-bold text-white leading-tight mb-5">
+    <h1
+      class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-5"
+    >
       {{ post.title }}
     </h1>
 
-    <p class="text-lg text-slate-400 leading-relaxed mb-5">
+    <p class="text-base sm:text-lg text-muted leading-relaxed mb-5">
       {{ post.excerpt }}
     </p>
 
     <!-- Info -->
     <div
-      class="flex flex-wrap items-center gap-4 text-sm text-slate-500 pb-6 border-b border-slate-900"
+      class="flex flex-wrap items-center gap-4 text-sm text-muted pb-6 border-b border-border"
     >
       <!-- Date -->
       <div class="flex items-center gap-1.5">
@@ -118,7 +125,7 @@
       <div class="flex flex-wrap gap-5">
         {% for tag in post.tags.all %}
         <span
-          class="px-4 py-1.5 text-sm rounded-lg border border-slate-800 text-sky-500"
+          class="px-4 py-1.5 text-sm rounded-lg border border-border text-sky-500"
         >
           #{{ tag.name }}
         </span>
@@ -128,28 +135,28 @@
   </header>
 
   <!-- Content Area -->
-  <div class="grid lg:grid-cols-12 gap-10">
+  <div class="grid lg:grid-cols-12 gap-10 min-w-0 items-start overflow-x-hidden lg:overflow-x-visible">
     <!-- TOC -->
-    <aside class="hidden lg:block lg:col-span-3 pt-11">
-      <div class="sticky top-24">
-        <div class="border border-slate-800 rounded-lg p-5">
+    <aside
+      class="hidden lg:block lg:col-span-3 pt-11 min-w-0 lg:sticky lg:top-24 lg:self-start"
+    >
+      <div class="border border-border rounded-lg p-5">
           <h3
-            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+            class="text-xs font-semibold uppercase tracking-[0.2em] text-muted"
           >
             ON THIS PAGE
           </h3>
 
-          <div class="mt-4 border-t border-slate-800"></div>
+          <div class="mt-4 border-t border-border"></div>
 
           <div class="relative mt-5">
             <div
-              class="absolute left-[5px] top-0 bottom-0 w-px bg-slate-800"
+              class="absolute left-[5px] top-0 bottom-0 w-px bg-border"
             ></div>
 
             <ul id="toc" class="space-y-5"></ul>
           </div>
         </div>
-      </div>
     </aside>
 
     <!-- Article -->
@@ -160,146 +167,97 @@
 
   <!-- Prev Next -->
   {% if previous_post or next_post %}
-  <div class="mt-16 pt-10 grid lg:grid-cols-12">
-    <div class="lg:col-span-9 lg:col-start-4">
-      <div class="grid md:grid-cols-2 gap-4">
-        <!-- Previous -->
-        {% if previous_post %}
-        <a
-          href="{% url 'blog_detail' previous_post.slug %}"
-          class="group flex items-center gap-4 p-5 border border-slate-800 rounded-xl hover:bg-cardHover/30 transition"
-        >
-          <div
-            class="w-10 h-10 flex items-center bg-cardHover/50 justify-center border border-slate-700 rounded-md flex-shrink-0"
+  <div
+    class="mt-12 sm:mt-16 pt-8 sm:pt-10 border-t border-border w-full min-w-0"
+  >
+    <div class="grid lg:grid-cols-12 w-full min-w-0">
+      <div class="lg:col-span-9 lg:col-start-4 w-full min-w-0">
+        <div class="flex flex-col sm:grid sm:grid-cols-2 gap-3 w-full min-w-0">
+          {% if previous_post %}
+          <a
+            href="{% url 'blog_detail' previous_post.slug %}"
+            class="group flex items-center gap-2.5 sm:gap-4 min-w-0 p-3 sm:p-5 border border-border rounded-lg sm:rounded-xl hover:bg-cardHover/30 transition"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2.5"
-              stroke="#2F67D3"
-              class="size-4"
+            <div
+              class="hidden sm:flex w-10 h-10 items-center bg-cardHover/50 justify-center border border-border rounded-md shrink-0"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
-              />
-            </svg>
-          </div>
-
-          <div class="min-w-0">
-            <div class="text-xs uppercase tracking-wider text-slate-500">
-              PREVIOUS POST
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="#2F67D3"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                />
+              </svg>
             </div>
-            <div class="text-white group-hover:text-blue-400 truncate">
-              {{ previous_post.title }}
+            <span class="sm:hidden text-blue-400 text-sm shrink-0">←</span>
+            <div class="min-w-0 flex-1">
+              <div
+                class="text-[10px] sm:text-xs uppercase tracking-wider text-muted"
+              >
+                Previous
+              </div>
+              <div
+                class="text-sm sm:text-base text-foreground group-hover:text-blue-400 truncate"
+              >
+                {{ previous_post.title }}
+              </div>
             </div>
-          </div>
-        </a>
-        {% else %}
-        <div></div>
-        {% endif %}
-
-        <!-- Next -->
-        {% if next_post %}
-        <a
-          href="{% url 'blog_detail' next_post.slug %}"
-          class="group flex items-center justify-end gap-4 p-5 border border-slate-800 rounded-xl hover:bg-cardHover/30 transition text-right"
-        >
-          <div class="min-w-0">
-            <div class="text-xs uppercase tracking-wider text-slate-500">
-              NEXT POST
-            </div>
-            <div class="text-white group-hover:text-blue-400 truncate">
-              {{ next_post.title }}
-            </div>
-          </div>
-
-          <div
-            class="w-10 h-10 flex items-center justify-center bg-cardHover/50 border border-slate-700 rounded-md flex-shrink-0"
+          </a>
+          {% endif %} {% if next_post %}
+          <a
+            href="{% url 'blog_detail' next_post.slug %}"
+            class="group flex items-center gap-2.5 sm:gap-4 min-w-0 p-3 sm:p-5 border border-border rounded-lg sm:rounded-xl hover:bg-cardHover/30 transition sm:text-right"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2.5"
-              stroke="#2F67D3"
-              class="size-4"
+            <div class="min-w-0 flex-1 sm:order-1">
+              <div
+                class="text-[10px] sm:text-xs uppercase tracking-wider text-muted"
+              >
+                Next
+              </div>
+              <div
+                class="text-sm sm:text-base text-foreground group-hover:text-blue-400 truncate"
+              >
+                {{ next_post.title }}
+              </div>
+            </div>
+            <span class="sm:hidden text-blue-400 text-sm shrink-0 ml-auto"
+              >→</span
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-              />
-            </svg>
-          </div>
-        </a>
-        {% endif %}
+            <div
+              class="hidden sm:flex w-10 h-10 items-center justify-center bg-cardHover/50 border border-border rounded-md shrink-0 sm:order-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="#2F67D3"
+                class="size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </div>
+          </a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
   {% endif %}
 </section>
 
-<script>
-  (function () {
-    const article = document.querySelector(".article-content");
-    const toc = document.getElementById("toc");
-    if (!article || !toc) return;
-
-    const headings = article.querySelectorAll("h2, h3");
-    const items = [];
-
-    headings.forEach((h, i) => {
-      const id = "heading-" + i;
-      h.id = id;
-      const isH3 = h.tagName === "H3";
-      items.push({ id, text: h.textContent.trim(), isH3 });
-
-      const li = document.createElement("li");
-      li.className = "relative pl-6";
-      li.innerHTML =
-        '<span class="toc-dot absolute left-0 top-1/2 -translate-y-1/2 w-[11px] h-[11px] rounded-full bg-blue-500 transition-opacity"></span>' +
-        '<a href="#' +
-        id +
-        '" class="toc-link text-slate-400 hover:text-white transition-colors ' +
-        (isH3 ? "text-sm" : "") +
-        '">' +
-        h.textContent.trim() +
-        "</a>";
-      toc.appendChild(li);
-    });
-
-    if (items.length === 0) return;
-
-    function updateToc() {
-      let current = 0;
-      headings.forEach((h, i) => {
-        if (h.getBoundingClientRect().top <= 120) current = i;
-      });
-
-      toc.querySelectorAll("li").forEach((li, i) => {
-        const dot = li.querySelector(".toc-dot");
-        const link = li.querySelector(".toc-link");
-        if (i === current) {
-          dot.classList.remove("opacity-0");
-          link.classList.add("text-blue-400", "font-medium");
-          link.classList.remove("text-slate-400");
-        } else {
-          dot.classList.add("opacity-0");
-          link.classList.remove("text-blue-400", "font-medium");
-          link.classList.add("text-slate-400");
-        }
-      });
-    }
-
-    window.addEventListener("scroll", updateToc, { passive: true });
-    updateToc();
-  })();
-</script>
-
-<link rel="stylesheet" href="{% static 'blog/css/blog-bg-effects.css' %}">
+{% endblock %} {% block extra_js %}
+<script src="{% static 'js/blog-toc.js' %}"></script>
 <script src="{% static 'blog/js/particles.js' %}"></script>
-
 {% endblock %}
