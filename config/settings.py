@@ -6,12 +6,18 @@ from decouple import config, Csv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-me-in-production')
+SECRET_KEY = config(
+    'SECRET_KEY', default='django-insecure-change-me-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = False
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='fatiimahoseini.ir, www.fatiimahoseini.ir', cast=Csv())
+
+ALLOWED_HOSTS = [
+    "fatiimahoseini.ir",
+    "www.fatiimahoseini.ir",
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -98,9 +104,9 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files
+# Media files — must be an absolute path on cPanel (e.g. /home/USER/public_html/media)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = Path(config('MEDIA_ROOT', default=str(BASE_DIR / 'media')))
 
 # CKEditor 5
 CKEDITOR_5_CONFIGS = {
@@ -117,7 +123,8 @@ CKEDITOR_5_CONFIGS = {
         "language": "en",
     },
 }
-CKEDITOR_5_UPLOAD_FILE_TYPES = ["jpg", "jpeg", "png", "gif", "bmp", "webp", "tiff"]
+CKEDITOR_5_UPLOAD_FILE_TYPES = [
+    "jpg", "jpeg", "png", "gif", "bmp", "webp", "tiff"]
 
 # Security settings (only when DEBUG is False)
 if not DEBUG:
