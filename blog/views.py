@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+from django.db.models import F
 from .models import Post, Category, Tag, Subscriber
 
 
@@ -65,8 +66,16 @@ def blog(request):
 def blog_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
 
-    # Increment views
-    Post.objects.filter(pk=post.pk).update(views_count=post.views_count + 1)
+    # Increment views once per session
+    viewed_posts = request.session.get("viewed_posts", [])
+
+    if post.id not in viewed_posts:
+        Post.objects.filter(pk=post.pk).update(
+            views_count=F("views_count") + 1
+        )
+
+        viewed_posts.append(post.id)
+        request.session["viewed_posts"] = viewed_posts
 
     previous_post = post.get_previous_post()
     next_post = post.get_next_post()
