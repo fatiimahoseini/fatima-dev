@@ -1,780 +1,829 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}fatima.dev{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block title %}fatima.dev{%
+endblock %} {% block content %}
 
 <!-- Background Effects -->
 <div class="bg-grid bg-grid--subtle" data-bg="grid"></div>
-<canvas id="particleCanvas" class="fixed inset-0 z-0 pointer-events-none"
-        data-density="10000" data-fade-scroll="true" data-focus="top-right"></canvas>
+<canvas
+  id="particleCanvas"
+  class="fixed inset-0 z-0 pointer-events-none"
+  data-density="10000"
+  data-fade-scroll="true"
+  data-focus="top-right"
+></canvas>
 <div class="bg-noise bg-noise--subtle" data-bg="noise"></div>
 
 <!-- HERO WRAPPER -->
-<section id="hero" class="w-full min-w-0 max-w-5xl mx-auto relative overflow-x-hidden">
+<section
+  id="hero"
+  class="w-full min-w-0 max-w-5xl mx-auto relative overflow-x-hidden"
+>
+  <!-- Background -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <!-- FADE TO NEXT SECTION -->
+    <div
+      class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-fade"
+    ></div>
+  </div>
 
-    <!-- Background -->
-    <div class="absolute inset-0 -z-10 overflow-hidden">
+  <!-- CONTENT -->
 
-        <!-- FADE TO NEXT SECTION -->
-        <div class="absolute bottom-0 left-0 w-full h-40
-                    bg-gradient-to-b from-transparent to-fade"></div>
+  <!-- Subtitle whoami -->
+  <p class="text-sky-500 font-mono mb-3 mt-4">$ WHOAMI</p>
 
+  <!-- Name -->
+  <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold">
+    Fatima Hosseini
+  </h1>
+
+  <!-- Description -->
+  <p class="mt-5 text-secondary text-base sm:text-lg">
+    Backend Developer focused on building reliable APIs, data pipelines, and
+    developer tools.<br />
+    Interested in clean system design, maintainable abstractions, and the
+    intersection of backend engineering with applied AI systems.
+  </p>
+
+  <!-- Buttons -->
+  <div class="mt-10 flex flex-wrap gap-4">
+    <a
+      class="relative inline-flex items-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white font-medium px-5 py-2.5 rounded-lg shadow-[0_0_25px_rgba(59,130,246,0.25)] hover:shadow-[0_0_40px_rgba(59,130,246,0.35)] transition-all duration-300 ease-out active:scale-95 hover:-translate-y-1 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-background overflow-hidden"
+      href="{% url 'blog' %}"
+    >
+      Read the blog &rarr;
+    </a>
+
+    <a
+      class="inline-flex items-center px-5 py-2.5 rounded-lg border border-border hover:border-muted text-foreground/90"
+      href="{% url 'contact' %}"
+    >
+      Get in touch
+    </a>
+  </div>
+
+  <!-- CARDS -->
+  <div class="mt-10 grid md:grid-cols-2 gap-6">
+    <!-- Card 1 -->
+    <div
+      class="bg-card border border-border rounded-xl p-6 transition duration-300 relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:border-muted"
+    >
+      <p class="text-xs font-mono text-muted uppercase tracking-wider">
+        Currently
+      </p>
+
+      <h3 class="mt-2 text-lg font-semibold text-foreground">Working on</h3>
+
+      <p class="mt-3 text-secondary leading-relaxed">
+        Building an analytics platform with NestJS. Working with ClickHouse,
+        Postgres, APIs, and data pipelines.
+      </p>
     </div>
 
-    <!-- CONTENT -->
+    <!-- Card 2 -->
+    <div
+      class="bg-card border border-border rounded-xl p-6 transition duration-300 relative overflow-hidden hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] hover:border-muted"
+    >
+      <p class="text-xs font-mono text-muted uppercase tracking-wider">
+        Writing
+      </p>
 
-    <!-- Subtitle whoami -->
-    <p class="text-sky-500 font-mono mb-3 mt-4">$ WHOAMI</p>
+      <h3 class="mt-2 text-lg font-semibold text-foreground">On the blog</h3>
 
-    <!-- Name -->
-    <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold">
-        Fatima Hosseini
-    </h1>
-
-    <!-- Description -->
-    <p class="mt-5 text-secondary text-base sm:text-lg">
-        Backend Developer focused on building reliable APIs, data pipelines, and developer tools.<br>
-        Interested in clean system design, maintainable abstractions, and the intersection of backend engineering with applied AI systems.
-    </p>
-
-    <!-- Buttons -->
-    <div class="mt-10 flex flex-wrap gap-4">
-        <a class="relative inline-flex items-center gap-2
-        bg-gradient-to-r from-sky-600 to-blue-600
-        hover:from-sky-500 hover:to-blue-500
-        text-white font-medium
-        px-5 py-2.5 rounded-lg
-        shadow-[0_0_25px_rgba(59,130,246,0.25)]
-        hover:shadow-[0_0_40px_rgba(59,130,246,0.35)]
-        transition-all duration-300 ease-out
-        active:scale-95
-        hover:-translate-y-1 hover:scale-[1.02]
-        focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2 focus:ring-offset-background
-        overflow-hidden"
-           href="{% url 'blog' %}">
-            Read the blog &rarr;
-        </a>
-
-        <a class="inline-flex items-center
-        px-5 py-2.5
-        rounded-lg
-        border border-border
-        hover:border-muted
-        text-foreground/90"
-           href="{% url 'contact' %}">
-            Get in touch
-        </a>
+      <p class="mt-3 text-secondary leading-relaxed">
+        Notes on AI tools, backend systems, and how modern technologies improve
+        the way we build software.
+      </p>
     </div>
+  </div>
 
-    <!-- CARDS -->
-    <div class="mt-10 grid md:grid-cols-2 gap-6">
+  <!-- SKILLS SCROLLER -->
+  <div class="relative mt-12 w-full overflow-hidden">
+    <!-- LEFT FADE -->
+    <div
+      class="absolute left-0 top-0 h-full w-12 sm:w-24 z-10 bg-gradient-to-r from-fade to-transparent"
+    ></div>
 
-        <!-- Card 1 -->
-        <div class="bg-card border border-border rounded-xl p-6
-                    transition duration-300 relative overflow-hidden
-                    hover:-translate-y-1
-                    hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]
-                    hover:border-muted">
+    <!-- RIGHT FADE -->
+    <div
+      class="absolute right-0 top-0 h-full w-12 sm:w-24 z-10 bg-gradient-to-l from-fade to-transparent"
+    ></div>
 
-            <p class="text-xs font-mono text-muted uppercase tracking-wider">
-                Currently
-            </p>
+    <!-- SCROLL WRAPPER -->
+    <div class="flex min-w-max gap-6 animate-scroll">
+      <!-- ITEMS -->
+      <div class="flex gap-6 text-muted font-mono text-sm">
+        <span>Javascript</span>
+        <span>Python</span>
+        <span>TypeScript</span>
+        <span>Django</span>
+        <span>NestJS</span>
+        <span>PostgreSQL</span>
+        <span>Docker</span>
+        <span>Clickhouse</span>
+        <span>FastAPI</span>
+        <span>n8n</span>
+        <span>Linux</span>
+        <span>Redis</span>
+        <span>Go</span>
+        <span>React</span>
+        <span>Kubernetes</span>
+        <span>gRPC</span>
+        <span>Rust</span>
+        <span>WebAssembly</span>
+      </div>
 
-            <h3 class="mt-2 text-lg font-semibold text-foreground">
-                Working on
-            </h3>
-
-            <p class="mt-3 text-secondary leading-relaxed">
-                Building an analytics platform with NestJS. Working with ClickHouse, Postgres, APIs, and data pipelines.
-            </p>
-
-        </div>
-
-        <!-- Card 2 -->
-        <div class="bg-card border border-border rounded-xl p-6
-                    transition duration-300 relative overflow-hidden
-                    hover:-translate-y-1
-                    hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]
-                    hover:border-muted">
-
-            <p class="text-xs font-mono text-muted uppercase tracking-wider">
-                Writing
-            </p>
-
-            <h3 class="mt-2 text-lg font-semibold text-foreground">
-                On the blog
-            </h3>
-
-            <p class="mt-3 text-secondary leading-relaxed">
-                Notes on backend systems, job queues with BullMQ, and how async processing improves reliability in APIs.
-            </p>
-
-        </div>
-
+      <!-- DUPLICATE (for seamless loop) -->
+      <div class="flex gap-6 text-muted font-mono text-sm">
+        <span>Javascript</span>
+        <span>Python</span>
+        <span>TypeScript</span>
+        <span>Django</span>
+        <span>NestJS</span>
+        <span>PostgreSQL</span>
+        <span>Docker</span>
+        <span>Clickhouse</span>
+        <span>FastAPI</span>
+        <span>n8n</span>
+        <span>Linux</span>
+        <span>Redis</span>
+        <span>Go</span>
+        <span>React</span>
+        <span>Kubernetes</span>
+        <span>gRPC</span>
+        <span>Rust</span>
+        <span>WebAssembly</span>
+      </div>
     </div>
-
-    <!-- SKILLS SCROLLER -->
-    <div class="relative mt-12 w-full overflow-hidden">
-
-        <!-- LEFT FADE -->
-        <div class="absolute left-0 top-0 h-full w-12 sm:w-24 z-10
-                    bg-gradient-to-r from-fade to-transparent"></div>
-
-        <!-- RIGHT FADE -->
-        <div class="absolute right-0 top-0 h-full w-12 sm:w-24 z-10
-                    bg-gradient-to-l from-fade to-transparent"></div>
-
-        <!-- SCROLL WRAPPER -->
-        <div class="flex min-w-max gap-6 animate-scroll">
-
-            <!-- ITEMS -->
-            <div class="flex gap-6 text-muted font-mono text-sm">
-
-                <span>Javascript</span>
-                <span>Python</span>
-                <span>TypeScript</span>
-                <span>Django</span>
-                <span>NestJS</span>
-                <span>PostgreSQL</span>
-                <span>Docker</span>
-                <span>Clickhouse</span>
-                <span>FastAPI</span>
-                <span>n8n</span>
-                <span>Linux</span>
-                <span>Redis</span>
-                <span>Go</span>
-                <span>React</span>
-                <span>Kubernetes</span>
-                <span>gRPC</span>
-                <span>Rust</span>
-                <span>WebAssembly</span>
-
-            </div>
-
-            <!-- DUPLICATE (for seamless loop) -->
-            <div class="flex gap-6 text-muted font-mono text-sm">
-
-                <span>Javascript</span>
-                <span>Python</span>
-                <span>TypeScript</span>
-                <span>Django</span>
-                <span>NestJS</span>
-                <span>PostgreSQL</span>
-                <span>Docker</span>
-                <span>Clickhouse</span>
-                <span>FastAPI</span>
-                <span>n8n</span>
-                <span>Linux</span>
-                <span>Redis</span>
-                <span>Go</span>
-                <span>React</span>
-                <span>Kubernetes</span>
-                <span>gRPC</span>
-                <span>Rust</span>
-                <span>WebAssembly</span>
-
-            </div>
-
-        </div>
-    </div>
-
+  </div>
 </section>
 
 <!-- ABOUT -->
 <section class="mt-20 sm:mt-32 max-w-5xl mx-auto">
+  <!-- HEADER -->
+  <div class="mb-10">
+    <p class="text-sky-500 font-mono">$ cat about.txt</p>
+    <h2 class="text-3xl sm:text-4xl font-semibold mt-2">About</h2>
+  </div>
 
-    <!-- HEADER -->
-    <div class="mb-10">
-        <p class="text-sky-500 font-mono">$ cat about.txt</p>
-        <h2 class="text-3xl sm:text-4xl font-semibold mt-2">About</h2>
+  <!-- GRID -->
+  <div class="grid md:grid-cols-2 gap-10">
+    <!-- LEFT: STORY -->
+    <div>
+      <p class="text-secondary font-mono text-sm leading-relaxed">
+        I'm a backend developer focused on building reliable and scalable data
+        systems.<br /><br />
+
+        I started with systems-level curiosity and gradually moved into backend
+        architecture and data-driven applications. These days I work mainly with
+        Python and TypeScript, building APIs, data pipelines, and analytics
+        platforms.<br /><br />
+
+        I care about performance, correctness, and simplicity in production
+        systems, and I’m exploring how AI can fit into real-world backend
+        workflows.
+      </p>
     </div>
 
-    <!-- GRID -->
-    <div class="grid md:grid-cols-2 gap-10">
-
-        <!-- LEFT: STORY -->
-        <div>
-
-            <p class="text-secondary font-mono text-sm leading-relaxed">
-                I'm a backend developer focused on building reliable and scalable data systems.<br><br>
-
-                I started with systems-level curiosity and gradually moved into backend architecture and data-driven applications. These days I work mainly with Python and TypeScript, building APIs, data pipelines, and analytics platforms.<br><br>
-                
-                I care about performance, correctness, and simplicity in production systems, and I’m exploring how AI can fit into real-world backend workflows.
-            </p>
-
+    <!-- RIGHT: INFO PANEL -->
+    <div class="space-y-5 font-mono text-sm">
+      <!-- ITEM -->
+      <div class="space-y-1">
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
+        >
+          <p class="text-secondary">Location</p>
+          <p class="text-muted sm:text-right">Iran, IR</p>
         </div>
+        <div class="h-px bg-border mt-2"></div>
+      </div>
 
-        <!-- RIGHT: INFO PANEL -->
-        <div class="space-y-5 font-mono text-sm">
-
-            <!-- ITEM -->
-            <div class="space-y-1">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                    <p class="text-secondary">Location</p>
-                    <p class="text-muted sm:text-right">Iran, IR</p>
-                </div>
-                <div class="h-px bg-border mt-2"></div>
-            </div>
-
-            <div class="space-y-1">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                    <p class="text-secondary">Focus</p>
-                    <p class="text-muted sm:text-right">Systems / Data Platforms</p>
-                </div>
-                <div class="h-px bg-border mt-2"></div>
-            </div>
-
-            <div class="space-y-1">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                    <p class="text-secondary">Languages</p>
-                    <p class="text-muted sm:text-right">Python, TypeScript</p>
-                </div>
-                <div class="h-px bg-border mt-2"></div>
-            </div>
-
-            <div class="space-y-1">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                    <p class="text-secondary">Editor</p>
-                    <p class="text-muted sm:text-right">VS Code, Neovim</p>
-                </div>
-                <div class="h-px bg-border mt-2"></div>
-            </div>
-
-            <div class="space-y-1">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                    <p class="text-secondary">Shell</p>
-                    <p class="text-muted sm:text-right">PowerShell</p>
-                </div>
-                <div class="h-px bg-border mt-2"></div>
-            </div>
-
-            <div class="space-y-1">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                    <p class="text-secondary">OS</p>
-                    <p class="text-muted sm:text-right">Windows, Linux</p>
-                </div>
-                <div class="h-px bg-border mt-2"></div>
-            </div>
-
+      <div class="space-y-1">
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
+        >
+          <p class="text-secondary">Focus</p>
+          <p class="text-muted sm:text-right">Systems / Data Platforms</p>
         </div>
+        <div class="h-px bg-border mt-2"></div>
+      </div>
 
+      <div class="space-y-1">
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
+        >
+          <p class="text-secondary">Languages</p>
+          <p class="text-muted sm:text-right">Python, TypeScript</p>
+        </div>
+        <div class="h-px bg-border mt-2"></div>
+      </div>
+
+      <div class="space-y-1">
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
+        >
+          <p class="text-secondary">Editor</p>
+          <p class="text-muted sm:text-right">VS Code, Neovim</p>
+        </div>
+        <div class="h-px bg-border mt-2"></div>
+      </div>
+
+      <div class="space-y-1">
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
+        >
+          <p class="text-secondary">Shell</p>
+          <p class="text-muted sm:text-right">PowerShell</p>
+        </div>
+        <div class="h-px bg-border mt-2"></div>
+      </div>
+
+      <div class="space-y-1">
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
+        >
+          <p class="text-secondary">OS</p>
+          <p class="text-muted sm:text-right">Windows, Linux</p>
+        </div>
+        <div class="h-px bg-border mt-2"></div>
+      </div>
     </div>
-
+  </div>
 </section>
-
 
 <!-- PROJECTS -->
 <section class="mt-20 sm:mt-32 max-w-5xl mx-auto">
+  <!-- HEADER -->
+  <div class="mb-10">
+    <p class="text-sky-500 font-mono">$ ls ./projects</p>
+    <h2 class="text-3xl sm:text-4xl font-semibold mt-2">Projects</h2>
+    <p class="text-muted mt-2 text-sm">
+      A selection of systems I’ve worked on.
+    </p>
+  </div>
 
-    <!-- HEADER -->
-    <div class="mb-10">
-        <p class="text-sky-500 font-mono">$ ls ./projects</p>
-        <h2 class="text-3xl sm:text-4xl font-semibold mt-2">Projects</h2>
-        <p class="text-muted mt-2 text-sm">
-            A selection of systems I’ve worked on.
+  <!-- GRID -->
+  <div class="grid md:grid-cols-2 gap-5">
+    <!-- CARD 1 -->
+    <div
+      class="bg-card border border-border rounded-xl p-5 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-muted hover:shadow-[0_0_10px_rgba(255,255,255,0.05)] min-h-[220px]"
+    >
+      <div>
+        <h3
+          class="text-foreground font-semibold flex items-center justify-between"
+        >
+          SEO Analytics Platform (Ongoing)
+          <span class="text-muted text-sm">↗</span>
+        </h3>
+        <p class="text-sm text-sky-400 font-mono">MizfaTools</p>
+
+        <p class="text-muted text-sm mt-2">
+          A full-scale analytics platform inspired by Google Search Console,
+          designed to process and visualize SEO data with extended analytical
+          capabilities. It aggregates metrics into modular widgets for
+          reporting, analysis, and decision-making.
         </p>
+      </div>
+
+      <div class="mt-auto pt-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-red-400"></span>
+          <span class="text-xs text-secondary">NestJS</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            NestJS
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            PostgreSQL
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            ClickHouse
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            bullMQ
+          </span>
+        </div>
+      </div>
     </div>
 
-    <!-- GRID -->
-    <div class="grid md:grid-cols-2 gap-5">
+    <!-- CARD 2 -->
+    <div
+      class="bg-card border border-border rounded-xl p-5 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-muted hover:shadow-[0_0_10px_rgba(255,255,255,0.05)] min-h-[220px]"
+    >
+      <div>
+        <h3
+          class="text-foreground font-semibold flex items-center justify-between"
+        >
+          AI Workflow Systems
+          <span class="text-muted text-sm">↗</span>
+        </h3>
+        <p class="text-sm text-sky-400 font-mono">MizfaTools</p>
 
-        <!-- CARD 1 -->
-        <div class="bg-card border border-border rounded-xl p-5
-                    flex flex-col
-                    transition-all duration-300
-                    hover:-translate-y-1
-                    hover:border-muted
-                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
-                    min-h-[220px]">
+        <p class="text-muted text-sm mt-2">
+          Backend and AI-powered workflow systems built for SEO tooling and
+          internal automation.<br />
+          Focused on designing AI-driven agents and data pipelines for keyword
+          research, content analysis, and user insights.
+        </p>
+      </div>
 
-            <div>
-                <h3 class="text-foreground font-semibold flex items-center justify-between">
-                    SEO Analytics Platform (Ongoing)
-                    <span class="text-muted text-sm">↗</span>
-                </h3>
-                <p class="text-sm text-sky-400 font-mono">MizfaTools</p>
-
-                <p class="text-muted text-sm mt-2">
-                    A full-scale analytics platform inspired by Google Search Console, designed to process and visualize SEO data with extended analytical capabilities.
-                    It aggregates metrics into modular widgets for reporting, analysis, and decision-making.
-                </p>
-            </div>
-
-            <div class="mt-auto pt-4">
-
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
-                    <span class="text-xs text-secondary">NestJS</span>
-                </div>
-
-                <div class="flex flex-wrap gap-2 mt-3">
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        NestJS
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        PostgreSQL
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        ClickHouse
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        bullMQ
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-        
-        <!-- CARD 2 -->
-        <div class="bg-card border border-border rounded-xl p-5
-                    flex flex-col
-                    transition-all duration-300
-                    hover:-translate-y-1
-                    hover:border-muted
-                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
-                    min-h-[220px]">
-
-            <div>
-                <h3 class="text-foreground font-semibold flex items-center justify-between">
-                    AI Workflow Systems
-                    <span class="text-muted text-sm">↗</span>
-                </h3>
-                <p class="text-sm text-sky-400 font-mono">MizfaTools</p>
-
-                <p class="text-muted text-sm mt-2">
-                    Backend and AI-powered workflow systems built for SEO tooling and internal automation.<br>
-                    Focused on designing AI-driven agents and data pipelines for keyword research, content analysis, and user insights.
-                </p>
-            </div>
-
-            <div class="mt-auto pt-4">
-
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-rose-500"></span>
-                    <span class="text-xs text-secondary">n8n</span>
-                </div>
-
-                <div class="flex flex-wrap gap-2 mt-3">
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        n8n
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        OpenAI
-                    </span>
-                    
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        Javascript
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        LiteLLM
-                    </span>
-                </div>
-
-            </div>
-            
-        </div>
- 
-        <!-- CARD 3 -->
-        <div class="bg-card border border-border rounded-xl p-5
-                    flex flex-col
-                    transition-all duration-300
-                    hover:-translate-y-1
-                    hover:border-muted
-                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
-                    min-h-[220px]">
-
-            <div>
-                <h3 class="text-foreground font-semibold flex items-center justify-between">
-                    CRM & Data Operations System
-                    <span class="text-muted text-sm">↗</span>
-                </h3>
-                <p class="text-sm text-sky-400 font-mono">Wikiservice</p>
-
-
-                <p class="text-muted text-sm mt-2">
-                    Led CRM and data operations initiatives, defining workflows, auditing large financial datasets, 
-                    and improving data consistency through structured reporting and system redesign.
-                </p>
-            </div>
-
-            <div class="mt-auto pt-4">
-
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-                    <span class="text-xs text-secondary">MSCRM</span>
-                </div>
-
-                <div class="flex flex-wrap gap-2 mt-3">
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        Data Analysis
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        Process Design
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        Project Management
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-        <!-- CARD 4 -->
-        <div class="bg-card border border-border rounded-xl p-5
-                    flex flex-col
-                    transition-all duration-300
-                    hover:-translate-y-1
-                    hover:border-muted
-                    hover:shadow-[0_0_10px_rgba(255,255,255,0.05)]
-                    min-h-[220px]">
-
-            <div>
-                <h3 class="text-foreground font-semibold flex items-center justify-between">
-                    Marketing & Operations System
-                    <span class="text-muted text-sm">↗</span>
-                </h3>
-                <p class="text-sm text-sky-400 font-mono">Wikiservice</p>
-
-                <p class="text-muted text-sm mt-2">
-                    Supported digital operations by managing web and content systems, coordinating cross-team workflows, 
-                    and contributing to organizational process design and campaign execution.
-                </p>
-            </div>
-
-            <div class="mt-auto pt-4">
-
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-blue-400"></span>
-                    <span class="text-xs text-secondary">Web Operations</span>
-                </div>
-
-                <div class="flex flex-wrap gap-2 mt-3">
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        Content Systems
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        Team Coordination
-                    </span>
-
-                    <span class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20">
-                        Digital Marketing Systems
-                    </span>
-                </div>
-
-            </div>
-
+      <div class="mt-auto pt-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+          <span class="text-xs text-secondary">n8n</span>
         </div>
 
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            n8n
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            OpenAI
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            Javascript
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            LiteLLM
+          </span>
+        </div>
+      </div>
     </div>
 
+    <!-- CARD 3 -->
+    <div
+      class="bg-card border border-border rounded-xl p-5 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-muted hover:shadow-[0_0_10px_rgba(255,255,255,0.05)] min-h-[220px]"
+    >
+      <div>
+        <h3
+          class="text-foreground font-semibold flex items-center justify-between"
+        >
+          CRM & Data Operations System
+          <span class="text-muted text-sm">↗</span>
+        </h3>
+        <p class="text-sm text-sky-400 font-mono">Wikiservice</p>
+
+        <p class="text-muted text-sm mt-2">
+          Led CRM and data operations initiatives, defining workflows, auditing
+          large financial datasets, and improving data consistency through
+          structured reporting and system redesign.
+        </p>
+      </div>
+
+      <div class="mt-auto pt-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+          <span class="text-xs text-secondary">MSCRM</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            Data Analysis
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            Process Design
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            Project Management
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- CARD 4 -->
+    <div
+      class="bg-card border border-border rounded-xl p-5 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-muted hover:shadow-[0_0_10px_rgba(255,255,255,0.05)] min-h-[220px]"
+    >
+      <div>
+        <h3
+          class="text-foreground font-semibold flex items-center justify-between"
+        >
+          Marketing & Operations System
+          <span class="text-muted text-sm">↗</span>
+        </h3>
+        <p class="text-sm text-sky-400 font-mono">Wikiservice</p>
+
+        <p class="text-muted text-sm mt-2">
+          Supported digital operations by managing web and content systems,
+          coordinating cross-team workflows, and contributing to organizational
+          process design and campaign execution.
+        </p>
+      </div>
+
+      <div class="mt-auto pt-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+          <span class="text-xs text-secondary">Web Operations</span>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-3">
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            Content Systems
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            Team Coordination
+          </span>
+
+          <span
+            class="text-xs px-2 py-1 rounded-md text-sky-300 bg-sky-500/10 border border-sky-500/20"
+          >
+            Digital Marketing Systems
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Github -->
 <section class="mt-20 sm:mt-32 max-w-5xl mx-auto">
+  <div
+    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10"
+  >
+    <div>
+      <p class="text-sky-500 font-mono">$ git log --repos</p>
+      <h2 class="text-3xl sm:text-4xl font-semibold mt-2">GitHub Projects</h2>
+      <p class="text-muted mt-2 text-sm">
+        A selection of repositories and experiments.
+      </p>
+    </div>
 
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+    <a
+      href="https://github.com/fatiimahoseini"
+      target="_blank"
+      class="text-sm text-sky-400 hover:text-sky-300 transition"
+    >
+      View all →
+    </a>
+  </div>
 
+  <!-- LIST -->
+  <div class="space-y-5">
+    <!-- Repo Card 1 -->
+    <div
+      class="group bg-card border border-border rounded-xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-muted hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]"
+    >
+      <div
+        class="flex flex-col sm:flex-row sm:items-start justify-between gap-4"
+      >
         <div>
-            <p class="text-sky-500 font-mono">$ git log --repos</p>
-            <h2 class="text-3xl sm:text-4xl font-semibold mt-2">
-                GitHub Projects
-            </h2>
-            <p class="text-muted mt-2 text-sm">
-                A selection of repositories and experiments.
-            </p>
+          <h3
+            class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition"
+          >
+            Loan Eligibility Prediction
+          </h3>
+
+          <p class="text-muted text-sm mt-2">
+            A complete machine learning pipeline for predicting loan approval
+            using structured financial data.<br />
+            Includes preprocessing, feature engineering, model comparison, and
+            performance optimization across multiple classifiers.
+          </p>
+
+          <div class="mt-3 text-xs text-sky-400 font-mono">
+            Python • Scikit-learn • Pandas • NumPy
+          </div>
         </div>
 
-        <a href="https://github.com/fatiimahoseini" target="_blank"
-           class="text-sm text-sky-400 hover:text-sky-300 transition">
-            View all →
+        <a
+          href="https://github.com/fatiimahoseini/loan-eligibility-prediction"
+          class="shrink-0 self-start text-xs px-3 py-1 rounded-md border border-border text-secondary hover:border-sky-500 hover:text-sky-300 transition"
+        >
+          View
         </a>
-
+      </div>
     </div>
 
-    <!-- LIST -->
-    <div class="space-y-5">
+    <!-- Repo Card 2 -->
+    <div
+      class="group bg-card border border-border rounded-xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-muted hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]"
+    >
+      <div
+        class="flex flex-col sm:flex-row sm:items-start justify-between gap-4"
+      >
+        <div>
+          <h3
+            class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition"
+          >
+            Tennis Data Analysis Project
+          </h3>
 
-        <!-- Repo Card 1 -->
-        <div class="group bg-card border border-border rounded-xl p-5
-                    transition-all duration-300 ease-out
-                    hover:-translate-y-1 hover:scale-[1.01]
-                    hover:border-muted
-                    hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
+          <p class="text-muted text-sm mt-2">
+            A large-scale exploratory data analysis project on professional
+            tennis matches using structured multi-source datasets.<br />
+            Focused on performance metrics, player statistics, and match-level
+            insights through efficient data processing and aggregation
+            techniques.
+          </p>
 
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-
-                <div>
-                    <h3 class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition">
-                        Loan Eligibility Prediction
-                    </h3>
-
-                    <p class="text-muted text-sm mt-2">
-                        A complete machine learning pipeline for predicting loan approval using structured financial data.<br>
-                        Includes preprocessing, feature engineering, model comparison, and performance optimization across multiple classifiers.
-                    </p>
-
-                    <div class="mt-3 text-xs text-sky-400 font-mono">
-                        Python • Scikit-learn • Pandas • NumPy
-                    </div>
-                </div>
-
-                <a href="https://github.com/fatiimahoseini/loan-eligibility-prediction"
-                   class="shrink-0 self-start text-xs px-3 py-1 rounded-md border border-border
-                          text-secondary hover:border-sky-500 hover:text-sky-300
-                          transition">
-                    View
-                </a>
-
-            </div>
-
+          <div class="mt-3 text-xs text-sky-400 font-mono">
+            Python • Pandas • PyArrow • Matplotlib • Jupyter
+          </div>
         </div>
 
-        <!-- Repo Card 2 -->
-        <div class="group bg-card border border-border rounded-xl p-5
-                    transition-all duration-300 ease-out
-                    hover:-translate-y-1 hover:scale-[1.01]
-                    hover:border-muted
-                    hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
-
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-
-                <div>
-                    <h3 class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition">
-                        Tennis Data Analysis Project
-                    </h3>
-
-                    <p class="text-muted text-sm mt-2">
-                        A large-scale exploratory data analysis project on professional tennis matches using structured multi-source datasets.<br>
-                        Focused on performance metrics, player statistics, and match-level insights through efficient data processing and aggregation techniques.
-                    </p>
-
-                    <div class="mt-3 text-xs text-sky-400 font-mono">
-                        Python • Pandas • PyArrow • Matplotlib • Jupyter
-                    </div>
-                </div>
-
-                <a href="https://github.com/fatiimahoseini/tennis-data-analysis"
-                   class="shrink-0 self-start text-xs px-3 py-1 rounded-md border border-border
-                          text-secondary hover:border-sky-500 hover:text-sky-300
-                          transition">
-                    View
-                </a>
-
-            </div>
-
-        </div>
-
-        <!-- Repo Card 3 -->
-        <div class="group bg-card border border-border rounded-xl p-5
-                    transition-all duration-300 ease-out
-                    hover:-translate-y-1 hover:scale-[1.01]
-                    hover:border-muted
-                    hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]">
-
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-
-                <div>
-                    <h3 class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition">
-                        Machine Learning Study Guide
-                    </h3>
-
-                    <p class="text-muted text-sm mt-2">
-                        A structured learning system for machine learning, designed around project-based exercises and guided study paths.<br>
-                        Focused on turning theoretical concepts into practical implementation through incremental learning modules and hands-on examples.
-                    </p>
-
-                    <div class="mt-3 text-xs text-sky-400 font-mono">
-                        Python • Machine Learning • Curriculum Design
-                    </div>
-                </div>
-
-                <a href="https://github.com/fatiimahoseini/Machine-Learning-Study-Guide"
-                   class="shrink-0 self-start text-xs px-3 py-1 rounded-md border border-border
-                          text-secondary hover:border-sky-500 hover:text-sky-300
-                          transition">
-                    View
-                </a>
-
-            </div>
-
-        </div>
-
+        <a
+          href="https://github.com/fatiimahoseini/tennis-data-analysis"
+          class="shrink-0 self-start text-xs px-3 py-1 rounded-md border border-border text-secondary hover:border-sky-500 hover:text-sky-300 transition"
+        >
+          View
+        </a>
+      </div>
     </div>
 
+    <!-- Repo Card 3 -->
+    <div
+      class="group bg-card border border-border rounded-xl p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-muted hover:shadow-[0_0_35px_rgba(59,130,246,0.25)]"
+    >
+      <div
+        class="flex flex-col sm:flex-row sm:items-start justify-between gap-4"
+      >
+        <div>
+          <h3
+            class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition"
+          >
+            Machine Learning Study Guide
+          </h3>
+
+          <p class="text-muted text-sm mt-2">
+            A structured learning system for machine learning, designed around
+            project-based exercises and guided study paths.<br />
+            Focused on turning theoretical concepts into practical
+            implementation through incremental learning modules and hands-on
+            examples.
+          </p>
+
+          <div class="mt-3 text-xs text-sky-400 font-mono">
+            Python • Machine Learning • Curriculum Design
+          </div>
+        </div>
+
+        <a
+          href="https://github.com/fatiimahoseini/Machine-Learning-Study-Guide"
+          class="shrink-0 self-start text-xs px-3 py-1 rounded-md border border-border text-secondary hover:border-sky-500 hover:text-sky-300 transition"
+        >
+          View
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Blog -->
-<section class="mt-20 sm:mt-32 w-full min-w-0 max-w-5xl mx-auto overflow-x-hidden">
+<section
+  class="mt-20 sm:mt-32 w-full min-w-0 max-w-5xl mx-auto overflow-x-hidden"
+>
+  <!-- HEADER -->
+  <div>
+    <p class="text-sky-500 font-mono mb-3">$ ls ./blogs</p>
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold">Blog</h2>
+    <p class="mt-6 text-secondary text-lg">
+      A collection of backend systems, experiments, and tools I've built.
+    </p>
+  </div>
 
-    <!-- HEADER -->
-    <div>
-        <p class="text-sky-500 font-mono mb-3">$ ls ./blogs</p>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold">
-            Blog
-        </h2>
-        <p class="mt-6 text-secondary text-lg">
-            A collection of backend systems, experiments, and tools I've built.
-        </p>
+  {% if blog_posts %}
+  <!-- SLIDER -->
+  <div class="mt-12 relative w-full min-w-0">
+    <!-- TRACK -->
+    <div id="blogSlider" class="w-full overflow-hidden">
+      <div
+        id="blogTrack"
+        class="flex gap-0 md:gap-6 transition-transform duration-500 ease-in-out"
+      >
+        {% for post in blog_posts %}
+        <a
+          href="{% url 'blog_detail' post.slug %}"
+          class="blog-slide group bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 ease-out shrink-0 hover:border-muted hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]"
+        >
+          <div class="h-40 overflow-hidden bg-cardHover">
+            <img
+              src="{{ post.image.url }}"
+              alt="{{ post.title }}"
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+            />
+          </div>
+
+          <div class="p-5">
+            <h3
+              class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition"
+            >
+              {{ post.title }}
+            </h3>
+
+            <p class="mt-2 text-sm text-secondary line-clamp-2">
+              {{ post.excerpt }}
+            </p>
+
+            <!-- META -->
+            <div
+              class="mt-4 flex items-center justify-between text-xs font-mono text-muted"
+            >
+              <!-- DATE -->
+              <div class="flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-3.5 h-3.5 text-muted"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+                <span>{{ post.published_at|date:"M Y" }}</span>
+              </div>
+
+              <!-- READ TIME -->
+              <div class="flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-3.5 h-3.5 text-muted"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{{ post.read_time }} min read</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
     </div>
 
-    {% if blog_posts %}
-    <!-- SLIDER -->
-    <div class="mt-12 relative w-full min-w-0">
+    <!-- CONTROLS -->
+    {% if blog_posts|length > 3 %}
+    <div class="flex items-center justify-center gap-3 mt-8">
+      <button
+        id="blogPrev"
+        class="w-10 h-10 flex items-center justify-center rounded-lg border border-border text-muted hover:border-sky-500 hover:text-sky-400 transition"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"
+          />
+        </svg>
+      </button>
 
-        <!-- TRACK -->
-        <div id="blogSlider" class="w-full overflow-hidden">
-            <div id="blogTrack" class="flex gap-0 md:gap-6 transition-transform duration-500 ease-in-out">
-                {% for post in blog_posts %}
-                <a href="{% url 'blog_detail' post.slug %}"
-                   class="blog-slide group bg-card border border-border rounded-xl overflow-hidden
-                          transition-all duration-300 ease-out shrink-0
-                          hover:border-muted
-                          hover:shadow-[0_0_45px_rgba(59,130,246,0.08)]">
+      <div id="blogDots" class="flex gap-2"></div>
 
-                    <div class="h-40 overflow-hidden bg-cardHover">
-                        <img src="{{ post.image.url }}"
-                             alt="{{ post.title }}"
-                             class="w-full h-full object-cover
-                                    transition duration-500
-                                    group-hover:scale-110">
-                    </div>
-
-                    <div class="p-5">
-
-                        <h3 class="text-foreground font-semibold text-lg group-hover:text-sky-300 transition">
-                            {{ post.title }}
-                        </h3>
-
-                        <p class="mt-2 text-sm text-secondary line-clamp-2">
-                            {{ post.excerpt }}
-                        </p>
-
-                        <!-- META -->
-                        <div class="mt-4 flex items-center justify-between text-xs font-mono text-muted">
-
-                            <!-- DATE -->
-                            <div class="flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="w-3.5 h-3.5 text-muted"
-                                     fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                </svg>
-                                <span>{{ post.published_at|date:"M Y" }}</span>
-                            </div>
-
-                            <!-- READ TIME -->
-                            <div class="flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     class="w-3.5 h-3.5 text-muted"
-                                     fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span>{{ post.read_time }} min read</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- CONTROLS -->
-        {% if blog_posts|length > 3 %}
-        <div class="flex items-center justify-center gap-3 mt-8">
-            <button id="blogPrev"
-                    class="w-10 h-10 flex items-center justify-center rounded-lg border border-border
-                           text-muted hover:border-sky-500 hover:text-sky-400 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
-                </svg>
-            </button>
-
-            <div id="blogDots" class="flex gap-2"></div>
-
-            <button id="blogNext"
-                    class="w-10 h-10 flex items-center justify-center rounded-lg border border-border
-                           text-muted hover:border-sky-500 hover:text-sky-400 transition">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
-                </svg>
-            </button>
-        </div>
-        {% endif %}
-
+      <button
+        id="blogNext"
+        class="w-10 h-10 flex items-center justify-center rounded-lg border border-border text-muted hover:border-sky-500 hover:text-sky-400 transition"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </button>
     </div>
     {% endif %}
-
+  </div>
+  {% endif %}
 </section>
 
 <!-- Contact -->
 <section class="mt-20 sm:mt-32 mb-16 sm:mb-24 max-w-5xl mx-auto">
+  <!-- title -->
+  <div class="mb-10">
+    <p class="text-sky-500 font-mono">$ cat contact.txt</p>
+    <h2 class="text-3xl sm:text-4xl font-semibold mt-2">Contact</h2>
+  </div>
 
-    <!-- title -->
-    <div class="mb-10">
-        <p class="text-sky-500 font-mono">$ cat contact.txt</p>
-        <h2 class="text-3xl sm:text-4xl font-semibold mt-2">Contact</h2>
+  <!-- column -->
+  <div
+    class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 justify-items-stretch md:justify-items-start"
+  >
+    <!-- left column -->
+    <div class="md:col-span-9">
+      <p class="text-secondary leading-relaxed max-w-2xl">
+        Open to meaningful engineering work, from freelance and advisory roles
+        to full-time positions in distributed systems, developer tooling, and
+        runtime or infrastructure-focused teams.
+      </p>
+
+      <div class="mt-8">
+        <a
+          href="mailto:fatiimahoseini@gmail.com"
+          class="inline-flex items-center gap-2 bg-sky-500 text-background px-4 py-2 rounded font-medium hover:bg-sky-600 transition-colors break-all sm:break-normal"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-6"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5.478 5.559A1.5 1.5 0 0 1 6.912 4.5H9A.75.75 0 0 0 9 3H6.912a3 3 0 0 0-2.868 2.118l-2.411 7.838a3 3 0 0 0-.133.882V18a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-4.162c0-.299-.045-.596-.133-.882l-2.412-7.838A3 3 0 0 0 17.088 3H15a.75.75 0 0 0 0 1.5h2.088a1.5 1.5 0 0 1 1.434 1.059l2.213 7.191H17.89a3 3 0 0 0-2.684 1.658l-.256.513a1.5 1.5 0 0 1-1.342.829h-3.218a1.5 1.5 0 0 1-1.342-.83l-.256-.512a3 3 0 0 0-2.684-1.658H3.265l2.213-7.191Z"
+              clip-rule="evenodd"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M12 2.25a.75.75 0 0 1 .75.75v6.44l1.72-1.72a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 0 1 1.06-1.06l1.72 1.72V3a.75.75 0 0 1 .75-.75Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <span>fatiimahoseini@gmail.com</span>
+        </a>
+      </div>
     </div>
 
-    <!-- column -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 justify-items-stretch md:justify-items-start">
-
-        <!-- left column -->
-        <div class="md:col-span-9">
-            <p class="text-secondary leading-relaxed max-w-2xl">
-                Open to meaningful engineering work, from freelance and advisory roles to full-time positions in distributed systems, developer tooling, and runtime or infrastructure-focused teams.
-            </p>
-
-            <div class="mt-8">
-                <a href="mailto:fatiimahoseini@gmail.com"
-                   class="inline-flex items-center gap-2 bg-sky-500 text-background px-4 py-2 rounded font-medium hover:bg-sky-600 transition-colors break-all sm:break-normal">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path fill-rule="evenodd" d="M5.478 5.559A1.5 1.5 0 0 1 6.912 4.5H9A.75.75 0 0 0 9 3H6.912a3 3 0 0 0-2.868 2.118l-2.411 7.838a3 3 0 0 0-.133.882V18a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3v-4.162c0-.299-.045-.596-.133-.882l-2.412-7.838A3 3 0 0 0 17.088 3H15a.75.75 0 0 0 0 1.5h2.088a1.5 1.5 0 0 1 1.434 1.059l2.213 7.191H17.89a3 3 0 0 0-2.684 1.658l-.256.513a1.5 1.5 0 0 1-1.342.829h-3.218a1.5 1.5 0 0 1-1.342-.83l-.256-.512a3 3 0 0 0-2.684-1.658H3.265l2.213-7.191Z" clip-rule="evenodd" />
-                        <path fill-rule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v6.44l1.72-1.72a.75.75 0 1 1 1.06 1.06l-3 3a.75.75 0 0 1-1.06 0l-3-3a.75.75 0 0 1 1.06-1.06l1.72 1.72V3a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                      </svg>                      
-                    <span>fatiimahoseini@gmail.com</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- right -->
-        <div class="md:col-span-3 md:justify-self-end space-y-4">
-            <!-- Github -->
-            <a href="https://github.com/fatiimahoseini" class="flex items-center gap-3 text-muted hover:text-foreground transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                <span>@fatiimahoseini</span>
-            </a>
-            <!-- Linkedin -->
-            <a href="https://www.linkedin.com/in/fatiimahoseini/" class="flex items-center gap-3 text-muted hover:text-foreground transition">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                <span>in/fatiimahoseini</span>
-            </a>
-        </div>
+    <!-- right -->
+    <div class="md:col-span-3 md:justify-self-end space-y-4">
+      <!-- Github -->
+      <a
+        href="https://github.com/fatiimahoseini"
+        class="flex items-center gap-3 text-muted hover:text-foreground transition"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+          />
+        </svg>
+        <span>@fatiimahoseini</span>
+      </a>
+      <!-- Linkedin -->
+      <a
+        href="https://www.linkedin.com/in/fatiimahoseini/"
+        class="flex items-center gap-3 text-muted hover:text-foreground transition"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+          />
+        </svg>
+        <span>in/fatiimahoseini</span>
+      </a>
     </div>
+  </div>
 </section>
 
-{% endblock %}
-
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 <script src="{% static 'blog/js/particles.js' %}"></script>
 <script src="{% static 'js/home-blog-slider.js' %}"></script>
 {% endblock %}
